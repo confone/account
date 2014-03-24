@@ -10,7 +10,9 @@ $content_url = 'http://local.content.confone.com';
 $autoload_dirs = array( '../util',
 						'../dao',
 						'controller',
-						'controller/account' );
+						'model',
+						'controller/account',
+						'model/account');
 
 
 //=======================================================================================

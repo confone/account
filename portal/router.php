@@ -104,7 +104,11 @@ function param($key) {
 		return urldecode($_GET[$key]);
 	} else {
 		global $_PARAM;
-		return $_PARAM[$key];
+		if (isset($_PARAM[$key])) {
+			return $_PARAM[$key];
+		} else {
+			return '';
+		}
 	}
 }
 

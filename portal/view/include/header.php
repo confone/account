@@ -1,6 +1,4 @@
-<?php
-global $base_url;
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">

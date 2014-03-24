@@ -2,7 +2,14 @@
 class LoginController extends ViewController {
 
 	protected function control() {
-		$this->render('account/login.php');
+		$username = param('username');
+		$password = param('password');
+
+		$this->render( array(
+			'view' => 'account/login.php',
+			'username' => $username,
+			'password' => $password
+		));
 	}
 }
 ?>
