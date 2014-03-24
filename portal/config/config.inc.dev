@@ -8,7 +8,9 @@ $content_url = 'http://local.content.confone.com';
 // =======================================================================================
 // auto include directory information
 $autoload_dirs = array( '../util',
-						'../dao' );
+						'../dao',
+						'controller',
+						'controller/account' );
 
 
 //=======================================================================================
@@ -27,24 +29,9 @@ $session_expires_in = 900;
 // logging information
 // INFO=4, WARN=3, ERROR=2, FATAL=1, NOTHING=0
 $log_level = 4;
-$log_file = '/opt/confone/www/logs/portal.log';
+$log_file = '/opt/confone/account/logs/portal.log';
 
 $access_on = 1;
-$access_log = '/opt/confone/www/logs/portal_access.log';
+$access_log = '/opt/confone/account/logs/portal_access.log';
 
-
-// =======================================================================================
-// autoload directories
-function __autoload($class_name) {
-    global $autoload_dirs;
-
-    // loop through all configured included folders for the {$class_name}.php file.
-    //
-    foreach ($autoload_dirs as $dir) {
-        if (is_file($dir.'/'.$class_name.'.php')) {
-            include ($dir.'/'.$class_name.'.php');
-            return;
-        }
-    }
-}
 ?>

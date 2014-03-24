@@ -18,7 +18,7 @@ class Utility {
             $ip = (isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : '');
         }
         if (empty($ip)) { 
-            $ip = (isset($_SERVER['TTP_X_FORWARDED_FOR']) ? $_SERVER['TTP_X_FORWARDED_FOR'] : '');
+            $ip = (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : '');
         }
         if (empty($ip)) {
             $ip = (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '');

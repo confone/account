@@ -1,14 +1,20 @@
 <?php
+date_default_timezone_set('America/Los_Angeles');
 include 'config/config.inc';
+$services = array();
+blockIp();
+include 'config/mapping.php';
 include '../dao/config/config.inc';
 
-$uri = rtrim(ltrim($_SERVER['REQUEST_URI'], '/'), '/');
+
+$uri = rtrim($_SERVER['REQUEST_URI'], '/');
 
 $_ASESSION = ASession::instance();
-$_TITLE = 'Confone | Welcome';
 
 date_default_timezone_set('America/Vancouver');
 header('X-Powered-By: Confone Inc.');
+
+$_PARAM = array();
 
 global $access_on;
 if ($access_on!=0) { Logger::access($uri); }
@@ -31,20 +37,64 @@ if (!empty($uri)) {
     }
 }
 
-if (is_dir($uri)) {
-	if (file_exists($uri.'/index.php')) {
-		include $uri.'/index.php';
-	} else {
-		header('HTTP/1.0 404 Not Found');
-		include 'include/404.php';
-	}
-} else if (file_exists($uri.'.php')) {
-	include $uri;
-} else if (empty($uri) || $uri=='index') {
-	include 'account/login.php';
-} else {
-	header('HTTP/1.0 404 Not Found');
-	include 'include/404.php';
+if (is_dir($uri) || empty($uri)) {
+	header('Location: '.$uri.'/index');
+	exit;
+}
+
+$uris = explode('/', $uri);
+foreach ($services as $key=>$val) {
+    $keys = explode('/', $key);
+
+    if (sizeof($uris)==sizeof($keys)) {
+        $match = TRUE;
+        foreach ($uris as $ind=>$elem) {
+            if ($uris[$ind]!=$keys[$ind]) {
+                if (strpos($keys[$ind],':') !== false) {
+                    $index = substr($keys[$ind], 1);
+                    $_PARAM[$index] = $uris[$ind];
+                } else {
+                    $match = FALSE;
+                }
+            }
+        }
+
+        if ($match) {
+            $controller = $services[$key];
+            try {
+                $controller->execute();
+            } catch (Exception $e) {
+                Logger::error($e->getMessage());
+            	exit;
+            }
+			exit;
+        }
+    }
+}
+
+// cannot find handler for the request uri, return 404
+//
+header('HTTP/1.0 404 Not Found');
+include 'view/include/404.php';
+
+// ========================================================================
+
+function register($path, $handler) {
+    global $services;
+    $services[$path] = $handler;
+}
+
+function __autoload($class_name) {
+    global $autoload_dirs;
+
+    // loop through all configured included folders for the {$class_name}.php file.
+    //
+    foreach ($autoload_dirs as $dir) {
+        if (is_file($dir.'/'.$class_name.'.php')) {
+            include ($dir.'/'.$class_name.'.php');
+            return;
+        }
+    }
 }
 
 function param($key) {
@@ -53,7 +103,20 @@ function param($key) {
 	} else if (isset($_GET[$key])) {
 		return urldecode($_GET[$key]);
 	} else {
-		return null;
+		global $_PARAM;
+		return $_PARAM[$key];
 	}
+}
+
+function blockIp() {
+    global $ip_block_list;
+
+    $ip = Utility::getClientIp();
+
+    if (isset($ip_block_list[$ip]) && $ip_block_list[$ip]==1) {
+        header('HTTP/1.0 403 Forbidden');
+        echo '{"error":"403 Forbidden"}';
+        exit;
+    }
 }
 ?>
