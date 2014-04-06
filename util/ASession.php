@@ -49,18 +49,23 @@ class ASession {
 		}
 		$session[$key] = $value;
 		global $session_expires_in;
-		$this->sessionCache->set($this->sessionId, $session, false, $session_expires_in);
+		$this->sessionCache->set($this->sessionId, $session, $session_expires_in);
 	}
 
 	public function get($key) {
 		global $session_expires_in;
 		$session = $this->sessionCache->get($this->sessionId);
-		$this->sessionCache->set($this->sessionId, $session, false, $session_expires_in);
+		$this->sessionCache->set($this->sessionId, $session, $session_expires_in);
 		if (isset($session[$key])) {
 			return $session[$key];
 		} else {
 			return null;
 		}
+	}
+
+	public function exist($key) {
+		$session = $this->sessionCache->get($this->sessionId);
+		return isset($session[$key]);
 	}
 
 	public function destroy() {

@@ -6,12 +6,19 @@ $content_url = 'http://local.content.confone.com';
 
 
 // =======================================================================================
+// rECAPTCHA keys
+$recaptcha_public_key = '6LdYVvESAAAAAEbUEdeWN9bcuowxWvcPGF3bxdDM';
+$recaptcha_private_key = '6LdYVvESAAAAABkHF9DpZvPw_l0rjXC2BSRa-pLL';
+
+
+// =======================================================================================
 // auto include directory information
 $autoload_dirs = array( '../util',
 						'../dao',
 						'controller',
 						'model',
 						'controller/account',
+						'controller/profile',
 						'model/account');
 
 

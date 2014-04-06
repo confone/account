@@ -1,5 +1,5 @@
 <?php
-abstract class ContentDao {
+abstract class AccountDao {
 
 	const SEQUENCE = '_shard_sequence';
 
@@ -67,13 +67,11 @@ abstract class ContentDao {
 	protected function retrive() {
 		$idColumn = $this->getIdColumnName();
 
-		// table name and primary key column name from abstract implementation of each sub class
-		//
-		$sql = 'SELECT * FROM ' . $this->getTableName() . ' WHERE '. $this->getIdColumnName() . '=' . $this->var[$idColumn];
+		$query = new QueryBuilder($this);
+		$res = $query->select('*', $this->getTableName())
+					 ->where($this->getIdColumnName(), $this->var[$idColumn])
+					 ->find();
 
-		$db_conn = DBUtil::getConn($this);
-		$res = DBUtil::selectData($db_conn, $sql);
-	
 		$atReturn = false;
 		if (isset($res) && $res) {
 			$this->var = $res;
@@ -97,28 +95,9 @@ abstract class ContentDao {
 		//
 		$idColumn = $this->getIdColumnName();
 
-		$db_conn = DBUtil::getConn($this);
-
-		$fileds = '(';
-		$values = '(';
-		foreach ($this->var as $key=>$val)
-		{
-			if ( isset($val) )
-			{
-				$fileds .= $key . ',';
-				$values .= DBUtil::checkNull($db_conn, $val) . ',';
-			}
-		}
-		$fileds = rtrim($fileds, ',') . ')';
-		$values = rtrim($values, ',') . ')';
-
-		// table name from abstract implementation of sub class
-		//
-		$table = $this->getTableName();
-
-		$sql = "INSERT INTO $table $fileds VALUES $values";
-
-		$res = DBUtil::insertData($db_conn, $sql);
+		$query = new QueryBuilder($this);
+		$res = $query->insert($this->var, $this->getTableName())
+					 ->query();
 
 		if ($res==-1) { Logger::error($sql); }
 
@@ -134,21 +113,15 @@ abstract class ContentDao {
 		//
 		$idColumn = $this->getIdColumnName();
 
-		$db_conn = DBUtil::getConn($this);
+		$set = $this->var;
+		unset($set[$idColumn]);
 
-		$setter = ' SET ';
-		foreach ($this->var as $key=>$val) {
-			if ( isset($val) && $key!=$idColumn ) {
-				$setter .= $key.'='.DBUtil::checkNull($db_conn, $val).',';
-			}
-		}
-		$setter = rtrim($setter, ',');
+		$builder = new QueryBuilder($this);
+		$result = $builder->update($set, $this->getTableName())
+						  ->where($idColumn, $this->var[$idColumn])
+						  ->query();
 
-		// the primary key value from abstract implementation of sub class - getObjId()
-		//
-		$sql = 'UPDATE ' . $this->getTableName() . $setter . ' WHERE ' . $idColumn . '=' . $this->var[$idColumn];
-
-		return DBUtil::updateData($db_conn, $sql);
+		return $result;
 	}
 
 	public function setShardId($shardSequence=0) {
@@ -264,12 +237,12 @@ abstract class ContentDao {
 
     private function getCurrentSequence() {
     	global $dbconfig;
-		$db_connect = DBUtil::getConn($this);
+
 		$idColumn = $this->getIdColumnName();
 		$table = $this->getTableName();
 
-		$sql = "SELECT MAX($idColumn) AS max FROM $table";
-		$result = DBUtil::selectData($db_connect, $sql);
+		$query = new QueryBuilder($this);
+		$result = $query->select("MAX($idColumn) AS max", $table)->find();
 
 		$shards_digit = $dbconfig[$this->getShardDomain()]['shards_digit'];
 
