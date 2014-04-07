@@ -1,9 +1,11 @@
 <?php
-abstract class AccountDao {
+abstract class AccountDaoBase {
 
 	const SEQUENCE = '_shard_sequence';
 
-	public $var = array();
+	protected $var = array();
+
+	protected $update = array();
 
 	protected $fromdb = false;
 
@@ -72,13 +74,12 @@ abstract class AccountDao {
 					 ->where($this->getIdColumnName(), $this->var[$idColumn])
 					 ->find();
 
-		$atReturn = false;
-		if (isset($res) && $res) {
+		$this->init();
+		$atReturn = isset($res) && $res; 
+		if ($atReturn) {
 			$this->var = $res;
-			$atReturn = true;
 		} else {
 			$id = $this->var[$idColumn];
-			$this->init();
 			$this->var[$idColumn] = $id;
 		}
 
@@ -89,10 +90,7 @@ abstract class AccountDao {
 	 * 
 	 * Insert an object to database
 	 */
-	private function insert()
-	{
-		// primary key id columnd name from abstract implementation of sub class
-		//
+	private function insert() {
 		$idColumn = $this->getIdColumnName();
 
 		$query = new QueryBuilder($this);
@@ -109,12 +107,14 @@ abstract class AccountDao {
 	 * update the database row of the object
 	 */
 	private function update() {
-		// primary key id columnd name from abstract implementation of sub class
-		//
 		$idColumn = $this->getIdColumnName();
 
-		$set = $this->var;
-		unset($set[$idColumn]);
+		$set = array();
+		foreach ($this->update as $key=>$val) {
+			if ($val) {
+				$set[$key] = $this->var[$key];
+			}
+		}
 
 		$builder = new QueryBuilder($this);
 		$result = $builder->update($set, $this->getTableName())

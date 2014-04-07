@@ -16,7 +16,7 @@ $dbconfig['account_user'] =
 		) 
 	);
 
-$dbconfig['account_token'] =
+$dbconfig['account_developer'] =
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
@@ -38,7 +38,7 @@ $dbconfig['account_lookup_user'] =
 		) 
 	);
 
-$dbconfig['account_lookup_token'] =
+$dbconfig['account_lookup_developer'] =
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
