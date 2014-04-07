@@ -48,7 +48,7 @@ abstract class UserDaoParent extends AccountDaoBase {
     }
 
     public function setProfilePic($profilePic) {
-        $this->var['profile_pic'] = $profile_pic;
+        $this->var['profile_pic'] = $profilePic;
         $this->update['profile_pic'] = true;
     }
     public function getProfilePic() {
@@ -64,7 +64,7 @@ abstract class UserDaoParent extends AccountDaoBase {
     }
 
     public function setLastLogin($lastLogin) {
-        $this->var['last_login'] = $last_login;
+        $this->var['last_login'] = $lastLogin;
         $this->update['last_login'] = true;
     }
     public function getLastLogin() {

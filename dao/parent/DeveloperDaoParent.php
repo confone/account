@@ -14,7 +14,7 @@ abstract class DeveloperDaoParent extends AccountDaoBase {
     }
 
     public function setUserId($userId) {
-        $this->var['user_id'] = $user_id;
+        $this->var['user_id'] = $userId;
         $this->update['user_id'] = true;
     }
     public function getUserId() {

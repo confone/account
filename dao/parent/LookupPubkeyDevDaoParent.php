@@ -18,7 +18,7 @@ abstract class LookupPubkeyDevDaoParent extends AccountDaoBase {
     }
 
     public function setPubKey($pubKey) {
-        $this->var['pub_key'] = $pub_key;
+        $this->var['pub_key'] = $pubKey;
         $this->update['pub_key'] = true;
     }
     public function getPubKey() {
@@ -26,7 +26,7 @@ abstract class LookupPubkeyDevDaoParent extends AccountDaoBase {
     }
 
     public function setDeveloperId($developerId) {
-        $this->var['developer_id'] = $developer_id;
+        $this->var['developer_id'] = $developerId;
         $this->update['developer_id'] = true;
     }
     public function getDeveloperId() {
@@ -34,7 +34,7 @@ abstract class LookupPubkeyDevDaoParent extends AccountDaoBase {
     }
 
     public function setApplicationId($applicationId) {
-        $this->var['application_id'] = $application_id;
+        $this->var['application_id'] = $applicationId;
         $this->update['application_id'] = true;
     }
     public function getApplicationId() {

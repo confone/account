@@ -16,7 +16,7 @@ abstract class LookupAtokenUserDaoParent extends AccountDaoBase {
     }
 
     public function setAccessToken($accessToken) {
-        $this->var['access_token'] = $access_token;
+        $this->var['access_token'] = $accessToken;
         $this->update['access_token'] = true;
     }
     public function getAccessToken() {
@@ -24,7 +24,7 @@ abstract class LookupAtokenUserDaoParent extends AccountDaoBase {
     }
 
     public function setUserId($userId) {
-        $this->var['user_id'] = $user_id;
+        $this->var['user_id'] = $userId;
         $this->update['user_id'] = true;
     }
     public function getUserId() {

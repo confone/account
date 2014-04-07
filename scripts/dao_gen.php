@@ -46,7 +46,7 @@ function genClass($table, $fields, $primaryKey) {
         if ($field!=$primaryKey) {
             $setter = to_camel_case("set_$field(\$$field)");
             $rv.= "    public function $setter {".PHP_EOL;
-            $rv.= "        \$this->var['$field'] = \$$field;".PHP_EOL;
+            $rv.= "        \$this->var['$field'] = \$".to_camel_case($field).";".PHP_EOL;
             $rv.= "        \$this->update['$field'] = true;".PHP_EOL;
             $rv.= "    }".PHP_EOL;
         }

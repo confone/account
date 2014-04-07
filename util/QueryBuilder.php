@@ -23,7 +23,7 @@ class QueryBuilder {
 			if ( isset($val) )
 			{
 				$fileds .= $key . ',';
-				$values .= DBUtil::checkNull($val) . ',';
+				$values .= $this->checkNull($val) . ',';
 			}
 		}
 		$fileds = rtrim($fileds, ',') . ')';
@@ -37,7 +37,7 @@ class QueryBuilder {
 	public function update($set, $table) {
 		$update = "UPDATE $table SET ";
 		foreach ($set as $key=>$val) {
-			$update.= $key.'='.DBUtil::checkNull($val).',';
+			$update.= $key.'='.$this->checkNull($val).',';
 		}
 
 		$this->query.= rtrim($update, ',');
@@ -108,7 +108,7 @@ class QueryBuilder {
 	}
 
 	public function order($field) {
-		return " ORDER BY $field";
+		$this->query.= " ORDER BY $field";
 
 		return $this;
 	}

@@ -24,7 +24,7 @@ abstract class TokenDaoParent extends AccountDaoBase {
     }
 
     public function setUserId($userId) {
-        $this->var['user_id'] = $user_id;
+        $this->var['user_id'] = $userId;
         $this->update['user_id'] = true;
     }
     public function getUserId() {
@@ -32,7 +32,7 @@ abstract class TokenDaoParent extends AccountDaoBase {
     }
 
     public function setApplicationId($applicationId) {
-        $this->var['application_id'] = $application_id;
+        $this->var['application_id'] = $applicationId;
         $this->update['application_id'] = true;
     }
     public function getApplicationId() {
@@ -40,7 +40,7 @@ abstract class TokenDaoParent extends AccountDaoBase {
     }
 
     public function setAccessToken($accessToken) {
-        $this->var['access_token'] = $access_token;
+        $this->var['access_token'] = $accessToken;
         $this->update['access_token'] = true;
     }
     public function getAccessToken() {
@@ -48,7 +48,7 @@ abstract class TokenDaoParent extends AccountDaoBase {
     }
 
     public function setRefreshToken($refreshToken) {
-        $this->var['refresh_token'] = $refresh_token;
+        $this->var['refresh_token'] = $refreshToken;
         $this->update['refresh_token'] = true;
     }
     public function getRefreshToken() {
@@ -56,7 +56,7 @@ abstract class TokenDaoParent extends AccountDaoBase {
     }
 
     public function setExpiresIn($expiresIn) {
-        $this->var['expires_in'] = $expires_in;
+        $this->var['expires_in'] = $expiresIn;
         $this->update['expires_in'] = true;
     }
     public function getExpiresIn() {

@@ -18,7 +18,7 @@ abstract class ApplicationDaoParent extends AccountDaoBase {
     }
 
     public function setDeveloperId($developerId) {
-        $this->var['developer_id'] = $developer_id;
+        $this->var['developer_id'] = $developerId;
         $this->update['developer_id'] = true;
     }
     public function getDeveloperId() {
@@ -26,7 +26,7 @@ abstract class ApplicationDaoParent extends AccountDaoBase {
     }
 
     public function setPubKey($pubKey) {
-        $this->var['pub_key'] = $pub_key;
+        $this->var['pub_key'] = $pubKey;
         $this->update['pub_key'] = true;
     }
     public function getPubKey() {
@@ -34,7 +34,7 @@ abstract class ApplicationDaoParent extends AccountDaoBase {
     }
 
     public function setPriKey($priKey) {
-        $this->var['pri_key'] = $pri_key;
+        $this->var['pri_key'] = $priKey;
         $this->update['pri_key'] = true;
     }
     public function getPriKey() {
