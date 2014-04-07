@@ -45,7 +45,11 @@ class QueryBuilder {
 		return $this;
 	}
 
-	public function select($fields, $table) {
+	public function select($fields, $table=null) {
+		if (!isset($table)) {
+			$table = $this->object->getTableName();
+		}
+
 		$select = 'SELECT ';
 		if (is_array($fields)) {
 			foreach ($fields as $field) {

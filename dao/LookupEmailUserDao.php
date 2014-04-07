@@ -8,7 +8,7 @@ class LookupEmailUserDao extends LookupEmailUserDaoParent {
 		$lookup->setServerAddress($email);
 
 		$builder = new QueryBuilder($lookup);
-		$res = $builder->select('user_id', LookupUserDao::TABLE)
+		$res = $builder->select('user_id')
 					   ->where('email', $email)
 					   ->find();
 

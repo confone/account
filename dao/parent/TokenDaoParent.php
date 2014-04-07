@@ -73,7 +73,7 @@ abstract class TokenDaoParent extends AccountDaoBase {
 
 // ======================================================================================== override
 
-    protected function getTableName() {
+    public function getTableName() {
         return 'token';
     }
 
@@ -84,7 +84,5 @@ abstract class TokenDaoParent extends AccountDaoBase {
     public function getShardDomain() {
         return 'account_user';
     }
-
-    abstract protected function isShardBaseObject();
 }
 ?>

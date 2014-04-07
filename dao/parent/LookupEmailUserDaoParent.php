@@ -33,7 +33,7 @@ abstract class LookupEmailUserDaoParent extends AccountDaoBase {
 
 // ======================================================================================== override
 
-    protected function getTableName() {
+    public function getTableName() {
         return 'lookup_email_user';
     }
 
@@ -44,7 +44,5 @@ abstract class LookupEmailUserDaoParent extends AccountDaoBase {
     public function getShardDomain() {
         return 'account_lookup_user';
     }
-
-    abstract protected function isShardBaseObject();
 }
 ?>

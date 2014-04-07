@@ -21,10 +21,10 @@ class LoginController extends ViewController {
 		    	if (!$resp->is_valid) {
             		$error = 'Invalid ReCAPTCHA input, please try again.';
         		} else {
-		    		$this->login($username, $password);
+		    		$this->login($username, $password, $loginCount);
 		        }
 		    } else {
-		    	$this->login($username, $password);
+		    	$this->login($username, $password, $loginCount);
 		    }
 		}
 
@@ -60,7 +60,7 @@ class LoginController extends ViewController {
 		return $loginCount;
 	}
 
-	private function login($username, $password) {
+	private function login($username, $password, $loginCount) {
 		global $_ASESSION;
 
         $userId = UserDao::authenticate($username, $password);

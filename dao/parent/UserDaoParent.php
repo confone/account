@@ -73,7 +73,7 @@ abstract class UserDaoParent extends AccountDaoBase {
 
 // ======================================================================================== override
 
-    protected function getTableName() {
+    public function getTableName() {
         return 'user';
     }
 
@@ -84,7 +84,5 @@ abstract class UserDaoParent extends AccountDaoBase {
     public function getShardDomain() {
         return 'account_user';
     }
-
-    abstract protected function isShardBaseObject();
 }
 ?>

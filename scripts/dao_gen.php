@@ -56,7 +56,7 @@ function genClass($table, $fields, $primaryKey) {
         $rv.= "    }".PHP_EOL.PHP_EOL;
     }
     $rv.= "// ======================================================================================== override".PHP_EOL.PHP_EOL;
-    $rv.= "    protected function getTableName() {".PHP_EOL;
+    $rv.= "    public function getTableName() {".PHP_EOL;
     $rv.= "        return '$table';".PHP_EOL;
     $rv.= "    }".PHP_EOL.PHP_EOL;
     $rv.= "    protected function getIdColumnName() {".PHP_EOL;
@@ -64,8 +64,7 @@ function genClass($table, $fields, $primaryKey) {
     $rv.= "    }".PHP_EOL.PHP_EOL;
     $rv.= "    public function getShardDomain() {".PHP_EOL;
     $rv.= "        return '$db_sche';".PHP_EOL;
-    $rv.= "    }".PHP_EOL.PHP_EOL;
-    $rv.= "    abstract protected function isShardBaseObject();".PHP_EOL;
+    $rv.= "    }".PHP_EOL;
     $rv.= "}".PHP_EOL."?>";
 
     return $rv;

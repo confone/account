@@ -26,4 +26,4 @@ CREATE INDEX {$dbName}_lookup_atoken_user_user_id_id_index ON {$dbName}.lookup_a
 
 GRANT ALL ON {$dbName}.* TO '{$uname}'@'%' IDENTIFIED BY '{$passwd}';
 
-INSERT INTO {$dbName}.user_email(email, user_id) VALUES('admin@confone.com', 1);
+INSERT INTO {$dbName}.lookup_email_user(email, user_id) VALUES('admin@confone.com', 1);

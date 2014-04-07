@@ -4,7 +4,7 @@ class UserDao extends UserDaoParent {
 // ================================================ public function =================================================
 
 	public static function authenticate($email, $passwd) {
-		$userId = LookupUserDao::getUserIdByEmail($email);
+		$userId = LookupEmailUserDao::getUserIdByEmail($email);
 
 		if ($userId==0) { return false; }
 

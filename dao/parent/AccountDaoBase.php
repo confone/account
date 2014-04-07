@@ -261,9 +261,9 @@ abstract class AccountDaoBase {
 
 	abstract public function getShardDomain();
 
-	abstract protected function init();
+	abstract public function getTableName();
 
-	abstract protected function getTableName();
+	abstract protected function init();
 
 	abstract protected function getIdColumnName(); 
 
