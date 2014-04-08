@@ -34,17 +34,8 @@ class LoginController extends ViewController {
 			'view' => 'account/login.php',
 			'recaptcha' => $loginCount>=3,
 			'redirect_uri' => empty($redirect_uri) ? '/profile' : $redirect_uri,
-			'error' => $error
+			'error' => isset($error) ? $error : null
 		));
-	}
-
-	private function loginRedirect() {
-		global $_ASESSION;
-
-		if ($_ASESSION->exist(ASession::$AUTHINDEX)) {
-			$redirect_uri = param('redirect_uri');
-			$this->redirect(empty($redirect_uri) ? '/profile' : $redirect_uri);
-		}
 	}
 
 	private function initLoginCount() {

@@ -29,6 +29,28 @@ abstract class ViewController {
 		$this->control();
 	}
 
+	protected function loginRedirect($message=null) {
+		global $_ASESSION;
+
+		if ($_ASESSION->exist(ASession::$AUTHINDEX)) {
+			$redirect_uri = param('redirect_uri');
+
+			if (empty($redirect_uri)) {
+				$redirect_uri = '/profile';
+			}
+
+			if (!empty($message)) {
+				if (strpos($redirect_uri, '?') !== FALSE) {
+					$redirect_uri.= '&msg='.$message;
+				} else {
+					$redirect_uri.= '?msg='.$message;
+				}
+			}
+
+			$this->redirect($redirect_uri);
+		}
+	}
+
 	protected function checkLogin() {
 		return true;
 	}

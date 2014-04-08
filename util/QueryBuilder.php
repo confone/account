@@ -179,7 +179,7 @@ class QueryBuilder {
 		}
     }
 
-    private static function checkNull($input)
+    private function checkNull($input)
     {
     	return (isset($input) ? "'". $this->connection->real_escape_string($input) . "'" : "NULL");
     }

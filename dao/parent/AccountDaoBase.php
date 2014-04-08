@@ -194,7 +194,7 @@ abstract class AccountDaoBase {
 		$dbName = $this->getShardedDatabaseName();
 		$tableName = $this->getTableName();
 
-		$sequenceKey = $dbName.'.'.$tableName.ContentDao::SEQUENCE;
+		$sequenceKey = $dbName.'.'.$tableName.self::SEQUENCE;
 
 		$mem = CacheUtil::getInstance();
 
@@ -209,7 +209,7 @@ abstract class AccountDaoBase {
 	}
 
 	private function getNextShardSequence() {
-		$sequenceKey = $this->getShardDomain().ContentDao::SEQUENCE;
+		$sequenceKey = $this->getShardDomain().self::SEQUENCE;
 
 		$mem = CacheUtil::getInstance();
 
