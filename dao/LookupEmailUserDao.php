@@ -5,7 +5,7 @@ class LookupEmailUserDao extends LookupEmailUserDaoParent {
 
 	public static function getUserIdByEmail($email) {
 		$lookup = new LookupEmailUserDao();
-		$lookup->setServerAddress($email);
+		$lookup->setServerAddress(Utility::hashString($email));
 
 		$builder = new QueryBuilder($lookup);
 		$res = $builder->select('user_id')
