@@ -25,6 +25,7 @@ class RegisterController extends ViewController {
 
 		$this->render( array(
 			'view'  => 'account/register.php',
+			'title' => 'Register | Confone',
 			'error' => isset($error) ? $error : null
 		));
 	}

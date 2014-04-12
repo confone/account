@@ -32,6 +32,7 @@ class LoginController extends ViewController {
 
 		$this->render( array(
 			'view' => 'account/login.php',
+			'title' => 'Login | Confone',
 			'recaptcha' => $loginCount>=3,
 			'redirect_uri' => empty($redirect_uri) ? '/profile' : $redirect_uri,
 			'error' => isset($error) ? $error : null
