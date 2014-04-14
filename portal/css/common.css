@@ -21,17 +21,16 @@ div#header {
 }
 div#header_inner {
 	margin: 0 auto;
-	font-size: 22px;
 	font-weight: bold;
 	height: 50px;
 	max-width: 980px;
 }
 div#logo {
-	width: 200px;
-	height: 26px;
-	padding-top: 12px;
+	width: 150px;
+	padding-top: 10px;
 	color: #855e42;
 	text-shadow: 1px 1px 0 #545454;
+	font-size: 28px;
 }
 div#logo > span {
 	color: #545454;
