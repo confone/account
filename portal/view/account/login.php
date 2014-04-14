@@ -15,7 +15,7 @@ include 'view/include/header.php';
     echo recaptcha_get_html($recaptcha_public_key, 'Invalid ReCAPTCHA', true);
 } ?>
 <input type="hidden" name="redirect_uri" value="<?=$redirect_uri ?>" />
-<input type="submit" value="Sign In" />
+<input class="button round4" type="submit" value="Sign In" />
 </form>
 <?php 
 include 'view/include/footer.php'
