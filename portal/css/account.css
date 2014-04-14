@@ -26,8 +26,31 @@
 }
 input.text_field {
 	height: 20px;
-	width: 200px;
+	width: 260px;
 	border: 1px solid #aaa;
 	padding: 6px;
 	font-size: 12px;
+}
+div#login {
+	margin: 0 auto;
+	width: 272px;
+	padding: 120px 0 240px 0;
+}
+div.field_div {
+	margin-top:2px;
+	margin-bottom:10px;
+}
+label.field_label {
+	font-size: .8em;
+	color: #666;
+}
+label.keep_login {
+	font-size: .8em;
+	color: #333;
+}
+div#rem_sub {
+	margin-top: 25px;
+}
+.right {
+	float: right;
 }

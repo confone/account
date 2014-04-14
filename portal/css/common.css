@@ -18,7 +18,7 @@ div#header_inner {
 	font-size: 22px;
 	font-weight: bold;
 	height: 50px;
-	width: 980px;
+	width-max: 980px;
 }
 div#logo {
 	width: 200px;
@@ -28,7 +28,7 @@ div#logo {
 }
 div#main {
 	margin: 0 auto;
-	width: 980px;
+	width-max: 980px;
 	min-height: 100px;
 }
 div#footer {
@@ -38,7 +38,7 @@ div#footer {
 }
 div#footer_inner {
 	margin: 0 auto;
-	width: 980px;
+	width-max: 980px;
 }
 div#copy_right {
 	font-size: .8em;
