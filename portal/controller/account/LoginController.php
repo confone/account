@@ -12,7 +12,6 @@ class LoginController extends ViewController {
 		$username = param('username');
 		$password = param('password');
 		if (!empty($username)) {
-
 		    if ($loginCount>=3) {
 		    	$resp = recaptcha_check_answer( $recaptcha_private_key, 
 						    					Utility::getClientIp(), 
@@ -27,7 +26,7 @@ class LoginController extends ViewController {
 		    	$error = $this->login($username, $password, $loginCount);
 		    }
 		} else if (isset($username)) {
-			$error = 'Email and Password should not be empty.';
+			$error = 'Please enter both Email and Password';
 		}
 
 		$redirect_uri = param('redirect_uri');

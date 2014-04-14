@@ -106,13 +106,13 @@ input.button {
 }
 input.button:hover {
 	background: #ffffff; /* Old browsers */
-	background: -moz-linear-gradient(top, #ffffff 0%, #cdcdcd 31%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(31%,#cdcdcd)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #ffffff 0%,#cdcdcd 31%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #ffffff 0%,#cdcdcd 31%); /* Opera11.10+ */
-	background: -ms-linear-gradient(top, #ffffff 0%,#cdcdcd 31%); /* IE10+ */
+	background: -moz-linear-gradient(top, #ffffff 0%, #cdcdcd 50%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#cdcdcd)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ffffff 0%,#cdcdcd 50%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ffffff 0%,#cdcdcd 50%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, #ffffff 0%,#cdcdcd 50%); /* IE10+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cdcdcd',GradientType=0 ); /* IE6-9 */
-	background: linear-gradient(top, #ffffff 0%,#cdcdcd 31%); /* W3C */
+	background: linear-gradient(top, #ffffff 0%,#cdcdcd 50%); /* W3C */
 	cursor:pointer;
 }
 input.button:active {
