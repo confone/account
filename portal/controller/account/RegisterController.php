@@ -9,30 +9,42 @@ class RegisterController extends ViewController {
 
 		$email = param('email');
 		if (!empty($email)) {
-		  	$resp = recaptcha_check_answer( $recaptcha_private_key, 
-					    					Utility::getClientIp(), 
-					    					param('recaptcha_challenge_field'), 
-					    					param('recaptcha_response_field') );
-		    if (!$resp->is_valid) {
-            	$error = 'Invalid ReCAPTCHA input, please try again.';
+        	$username = param('username');
+       		$password = param('password');
+       		$cpassword = param('cpassword');
+
+        	if (!empty($username) && !empty($password) && !empty($cpassword)) {
+		 	 	$resp = recaptcha_check_answer( $recaptcha_private_key, 
+						    					Utility::getClientIp(), 
+						    					param('recaptcha_challenge_field'), 
+						    					param('recaptcha_response_field') );
+		    	if (!$resp->is_valid) {
+            		$error = 'Invalid ReCAPTCHA, please try again.';
+        		} else {
+			    	$error = $this->register( $email, 
+			    							  param('username'), 
+			    							  param('password'), 
+			    							  param('cpassword') );
+		    	}
         	} else {
-		    	$error = $this->register( $email, 
-		    							  param('username'), 
-		    							  param('password'), 
-		    							  param('cpassword') );
-		    }
+        		$error = 'Missing required information!';
+       		}
+		} else if (isset($email)) {
+        	$error = 'Missing required information!';
 		}
 
 		$this->render( array(
 			'view'  => 'account/register.php',
 			'title' => 'Register | Confone',
+			'email' => $email,
+			'name' => param('username'),
 			'error' => isset($error) ? $error : null
 		));
 	}
 
 	private function register($email, $name, $password, $cpassword) {
 		if ($password!=$cpassword) {
-			return 'mismatch passwords';
+			return 'Passwords does NOT match!';
 		}
 
 		Logger::info('Registering user - '.$email.' '.$name.' '.$password.':'.$cpassword);

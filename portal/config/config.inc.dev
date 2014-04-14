@@ -20,6 +20,7 @@ $autoload_dirs = array( '../util',
 						'model',
 						'controller/account',
 						'controller/profile',
+						'controller/external',
 						'model/account');
 
 

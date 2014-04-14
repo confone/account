@@ -19,7 +19,7 @@
 <body>
 <div id="header">
 <div id="header_inner">
-<div id="logo">Confone</div>
+<div id="logo">Con<span>fone</span></div>
 </div>
 </div>
 <div id="main">
