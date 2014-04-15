@@ -9,7 +9,7 @@ $dbconfig['account_user'] =
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
-		'username' => 'confoneuser',
+		'username' => 'accountuser',
 		'password' => 'password',
 		'server_list' => array (
 			'192.168.0.119' => array('min'=>0, 'max'=>0)
@@ -20,7 +20,7 @@ $dbconfig['account_developer'] =
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
-		'username' => 'confoneuser',
+		'username' => 'accountuser',
 		'password' => 'password',
 		'server_list' => array (
 			'192.168.0.119' => array('min'=>0, 'max'=>0)
@@ -31,7 +31,7 @@ $dbconfig['account_lookup_user'] =
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
-		'username' => 'confoneuser',
+		'username' => 'accountuser',
 		'password' => 'password',
 		'server_list' => array (
 			'192.168.0.119' => array('min'=>0, 'max'=>0)
@@ -42,7 +42,7 @@ $dbconfig['account_lookup_developer'] =
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
-		'username' => 'confoneuser',
+		'username' => 'accountuser',
 		'password' => 'password',
 		'server_list' => array (
 			'192.168.0.119' => array('min'=>0, 'max'=>0)
