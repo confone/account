@@ -31,6 +31,7 @@ div#logo {
 	color: #855e42;
 	text-shadow: 1px 1px 0 #545454;
 	font-size: 28px;
+	cursor: pointer;
 }
 div#logo > span {
 	color: #545454;
