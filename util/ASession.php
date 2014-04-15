@@ -3,6 +3,7 @@ class ASession {
 
     public static $AUTHINDEX = 'auth_index';
 	public static $SESSION_KEY = 'CONFONESESSIONID';
+	public static $COOKIE_TOKEN = 'CONFONECTOKEN';
 
 	private $sessionId = null;
 	private $sessionCache = null;
@@ -64,7 +65,9 @@ class ASession {
 	}
 
 	public function exist($key) {
+		global $session_expires_in;
 		$session = $this->sessionCache->get($this->sessionId);
+		$this->sessionCache->set($this->sessionId, $session, $session_expires_in);
 		return isset($session[$key]);
 	}
 

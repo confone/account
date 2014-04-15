@@ -58,6 +58,12 @@ class RegisterController extends ViewController {
 		if ($user->isFromDatabase()) {
 			global $_ASESSION;
             $_ASESSION->set(ASession::$AUTHINDEX, $user->getId());
+            if (param('keep_login')) {
+				$token = LookupRememberUserDao::createRememberDao($user->getId());
+	           	if (isset($token)) {
+	           		setcookie(ASession::$COOKIE_TOKEN, $token, time()+2628000, '/', 'account.confone.com', false, true);
+	           	}
+            }
 			$this->redirect('/profile?msg=welcom');
 		}
 	}

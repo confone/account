@@ -23,7 +23,7 @@ echo recaptcha_get_html($recaptcha_public_key, 'Invalid ReCAPTCHA', true);
 <?php if(!empty($error)) { ?>
 <div id="error" class="round4"><?=$error ?></div>
 <?php } ?>
-<input type="checkbox" name="keep_login" id="keep_login" /><label for="keep_login" class="keep_login">Keep me logged in</label>
+<input type="checkbox" name="keep_login" id="keep_login" checked /><label for="keep_login" class="keep_login">Keep me logged in</label>
 <div class="top20px">
 <input class="button round4" type="submit" value="Sign up" />
 <label id="or">or</label><a href="/login">Sign in to Confone</a><br>

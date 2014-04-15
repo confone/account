@@ -19,6 +19,8 @@ abstract class ViewController {
 	}
 
 	public function execute() {
+		$this->cookieLogin();
+
 		if ($this->checkLogin()) {
 			global $_ASESSION, $_URI;
 			if (!$_ASESSION->exist(ASession::$AUTHINDEX)) {
@@ -53,6 +55,24 @@ abstract class ViewController {
 
 	protected function checkLogin() {
 		return true;
+	}
+
+	private function cookieLogin() {
+		$loggedIn = false;
+
+		if (isset($_COOKIE[ASession::$COOKIE_TOKEN])) {
+			$cookieToken = $_COOKIE[ASession::$COOKIE_TOKEN];
+			$userId = LookupRememberUserDao::getUserIdByCookieToken($cookieToken);
+
+			if ($userId>0) {
+				global $_ASESSION;
+				$_ASESSION->set(ASession::$AUTHINDEX, $userId);
+				setcookie(ASession::$COOKIE_TOKEN, $cookieToken, time()+2628000 , '/', 'account.confone.com', false, true);
+				$loggedIn = true;
+			}
+		}
+
+		return $loggedIn;
 	}
 
 	abstract protected function control();

@@ -61,6 +61,12 @@ class LoginController extends ViewController {
         if ($userId) {
             $_ASESSION->set('login_count', 0);
             $_ASESSION->set(ASession::$AUTHINDEX, $userId);
+            if (param('keep_login')) {
+            	$token = LookupRememberUserDao::createRememberDao($userId);
+            	if (isset($token)) {
+            		setcookie(ASession::$COOKIE_TOKEN, $token, time()+2628000 , '/', 'account.confone.com', false, true);
+            	}
+            }
             $this->redirect(param('redirect_uri'));
         } else {
             $_ASESSION->set('login_count', $loginCount+1);
