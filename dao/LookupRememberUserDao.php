@@ -54,6 +54,14 @@ class LookupRememberUserDao extends LookupRememberUserDaoParent {
 		return $res['count']>0;
 	}
 
+	public static function removeToken($cookieToken) {
+		$lookup = new LookupRememberUserDao();
+		$lookup->setServerAddress(Utility::hashString($cookieToken));
+
+		$builder = new QueryBuilder($lookup);
+		$builder->delete()->where('cookie_token', $cookieToken)->query();
+	}
+
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {

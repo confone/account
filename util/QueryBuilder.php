@@ -13,7 +13,11 @@ class QueryBuilder {
 		$this->getConnection();
 	}
 
-	public function insert($inserts, $table) {
+	public function insert($inserts, $table=null) {
+		if (!isset($table)) {
+			$table = $this->object->getTableName();
+		}
+
 		$this->isInsert = true;
 
 		$fileds = '(';
@@ -34,7 +38,11 @@ class QueryBuilder {
 		return $this;
 	}
 
-	public function update($set, $table) {
+	public function update($set, $table=null) {
+		if (!isset($table)) {
+			$table = $this->object->getTableName();
+		}
+
 		$update = "UPDATE $table SET ";
 		foreach ($set as $key=>$val) {
 			$update.= $key.'='.$this->checkNull($val).',';
@@ -65,7 +73,11 @@ class QueryBuilder {
 		return $this;
 	}
 
-	public function delete($table) {
+	public function delete($table=null) {
+		if (!isset($table)) {
+			$table = $this->object->getTableName();
+		}
+
 		$this->query.= "DELETE FROM $table";
 
 		return $this;

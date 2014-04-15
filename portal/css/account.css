@@ -46,17 +46,17 @@ div.field_div {
 }
 label.field_label {
 	font-size: .8em;
-	color: #C0C0C0;
+	color: #999;
 }
 label.keep_login {
 	font-size: .8em;
-	color: #545454;
+	color: #666;
 }
 div.top20px {
 	margin-top: 20px;
 }
 label#or {
-	color: #545454;
+	color: #666;
 	margin-left:10px;
 	margin-right:10px;
 	font-size: .8em;
