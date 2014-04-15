@@ -1,5 +1,5 @@
 <?php 
-$base_url = 'https://staging.account.confone.com';
+$base_host = 'https://staging.account.confone.com';
 $www_url = 'https://staging.www.confone.com';
 $security_url = 'https://staging.security.confone.com';
 $content_url = 'https://staging.content.confone.com';
