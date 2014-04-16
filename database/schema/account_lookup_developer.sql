@@ -10,7 +10,7 @@ CREATE TABLE {$dbName}.lookup_pubkey_dev
 
 CREATE INDEX {$dbName}_lookup_pubkey_dev_pub_key_index ON {$dbName}.lookup_pubkey_dev (pub_key(64));
 CREATE INDEX {$dbName}_lookup_pubkey_dev_developer_id_index ON {$dbName}.lookup_pubkey_dev (developer_id);
-CREATE INDEX {$dbName}_lookup_pubkey_dev_application_id_index ON {$dbName}.lookup_pubkey_dev (application_id);
+CREATE INDEX {$dbName}_lookup_pubkey_dev_app_id_index ON {$dbName}.lookup_pubkey_dev (application_id);
 
 
 GRANT ALL ON {$dbName}.* TO '{$uname}'@'%' IDENTIFIED BY '{$passwd}';
