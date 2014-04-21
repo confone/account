@@ -40,6 +40,8 @@ if (!empty($_URI)) {
     }
 }
 
+if (empty($uri)) { $uri = '/login'; }
+
 $uris = explode('/', $uri);
 foreach ($services as $key=>$val) {
     $keys = explode('/', $key);
