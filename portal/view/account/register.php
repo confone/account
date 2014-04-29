@@ -18,7 +18,9 @@ include 'view/include/header.php';
 <div class="field_div"><input class="text_field round4" type="password" name="cpassword" value="" /></div>
 <?php
 global $recaptcha_public_key;
-echo recaptcha_get_html($recaptcha_public_key, 'Invalid ReCAPTCHA', true);
+if (!empty($recaptcha_public_key)) {
+	echo recaptcha_get_html($recaptcha_public_key, 'Invalid ReCAPTCHA', true);
+}
 ?>
 <?php if(!empty($error)) { ?>
 <div id="error" class="round4"><?=$error ?></div>

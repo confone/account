@@ -4,7 +4,6 @@ class RegisterController extends ViewController {
 	protected function control() {
 		$this->loginRedirect();
 
-		include '../util/recaptchalib.php';
 		global $recaptcha_private_key;
 
 		$email = param('email');
@@ -14,11 +13,15 @@ class RegisterController extends ViewController {
        		$cpassword = param('cpassword');
 
         	if (!empty($username) && !empty($password) && !empty($cpassword)) {
-		 	 	$resp = recaptcha_check_answer( $recaptcha_private_key, 
-						    					Utility::getClientIp(), 
-						    					param('recaptcha_challenge_field'), 
-						    					param('recaptcha_response_field') );
-		    	if (!$resp->is_valid) {
+        		if (!empty($recaptcha_public_key)) {
+					include '../util/recaptchalib.php';
+			 	 	$resp = recaptcha_check_answer( $recaptcha_private_key, 
+							    					Utility::getClientIp(), 
+							    					param('recaptcha_challenge_field'), 
+							    					param('recaptcha_response_field') );
+        		}
+
+		    	if (empty($recaptcha_public_key) || !$resp->is_valid) {
             		$error = 'Invalid ReCAPTCHA, please try again.';
         		} else {
 			    	$error = $this->register( $email, 
