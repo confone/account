@@ -73,6 +73,7 @@ class ASession {
 
 	public function destroy() {
 		$this->sessionCache->delete($this->sessionId);
+		setcookie(ASession::$SESSION_KEY, $this->sessionId, time()-3600, '/', 'confone.com', false, true);
 	}
 }
 ?>

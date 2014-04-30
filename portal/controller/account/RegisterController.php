@@ -23,7 +23,7 @@ class RegisterController extends ViewController {
 							    					param('recaptcha_response_field') );
         		}
 
-		    	if (empty($recaptcha_public_key) || !$resp->is_valid) {
+		    	if (!empty($recaptcha_public_key) && !$resp->is_valid) {
             		$error = 'Invalid ReCAPTCHA, please try again.';
         		} else {
 			    	$error = $this->register( $email, 
@@ -69,6 +69,8 @@ class RegisterController extends ViewController {
 	           		setcookie(ASession::$COOKIE_TOKEN, $token, time()+2628000, '/', 'account.confone.com', false, true);
 	           	}
             }
+			EmailUtil::sendActivationEmail($email, $name, Utility::generateActivationToken('.'.$user->getId().'.'));
+
 			$this->redirect('/profile?msg=welcom');
 		}
 	}

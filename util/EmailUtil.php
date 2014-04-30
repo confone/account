@@ -3,21 +3,28 @@ class EmailUtil {
 
     const MAIL_FROM_NAME = 'Confone Notification';
     const MAIL_FROM_EMAIL = 'non-reply@confone.com';
-    const MANDRILL_KEY = 'YJc3ok6MpNDY69ZCEGdhHw';
-    const MANDRILL_URL = 'https://mandrillapp.com/api/1.0/';
+    const MANDRILL_KEY = '2BTjw7gutKe58cWGbbvmeA';
+    const MANDRILL_URL = 'https://mandrillapp.com/api/1.0/messages/send.json';
 
     public static function sendActivationEmail($email, $name, $accountTokenDao) {
-    	$to = array(array('email' => $email,'name' => $name));
+    	global $base_host;
+
+    	$to = array(array('email' => $email,'name' => $name, 'type' => 'to'));
 
     	$subject = 'Registration Confirmation - Activate Your Account';
 
-    	$html = '';
+    	$html ='
+<html>
+<body>
+<a href="'.$base_host.'/activation?token='.$accountTokenDao.'">activate your account</a>
+</body>
+</html>';
 
     	self::send($to, $subject, $html);
     }
 
     public static function sendForgetPasswordEmail($email, $name, $accountTokenDao) {
-		$to = array(array('email' => $email,'name' => $name));
+		$to = array(array('email' => $email,'name' => $name, 'type' => 'to'));
 
     	$subject = 'Forget Password - Reset Your Password';
 
@@ -27,36 +34,30 @@ class EmailUtil {
     }
 
     private static function send ( $to,
-        					$subject,
-        					$html,
-        					$from=EmailUtil::MAIL_FROM_EMAIL,
-        					$from_name=EmailUtil::MAIL_FROM_NAME ) {
+        						   $subject,
+        						   $html,
+        						   $from=EmailUtil::MAIL_FROM_EMAIL,
+        						   $from_name=EmailUtil::MAIL_FROM_NAME ) {
+		$body = array();
+		$body['key'] = EmailUtil::MANDRILL_KEY;
+		$body['headers'] = array('Reply-To' => $from);
+        $body['message'] = array( 'to' => $to,
+            					  'subject' => $subject,
+            					  'html' => $html,
+            					  'from_email' => $from,
+            					  'from_name' => $from_name );
 
-		$params = array('key'=>EmailUtil::MANDRILL_KEY);
-
-        $message = array(
-            'api_key' => self::SENDGRID_PASS,
-            'to' => json_encode($to),
-            'subject' => $subject,
-            'html' => $html,
-            'from_email' => $from,
-            'from_name' => $from_name
-        );
-
-        $params['message'] = $message;
-
-        $request = self::MANDRILL_URL . 'messages/send.json';
-
-        $session = curl_init($request);
-        curl_setopt($session, CURLOPT_POST, TRUE);
-        curl_setopt($session, CURLOPT_HEADER, FALSE);
-        curl_setopt($session, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($session, CURLOPT_POSTFIELDS, $params);
-        $response = curl_exec($session);
-        curl_close($session);
+        $curl = curl_init(self::MANDRILL_URL);
+        curl_setopt($curl, CURLOPT_POST, TRUE);
+        curl_setopt($curl, CURLOPT_HEADER, FALSE);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($body));
+        $response = curl_exec($curl);
+        curl_close($curl);
 
         $respArr = json_decode($response, true);
-        if ($respArr['status']=='error') {
+        $respArr = reset($respArr);
+        if ($respArr['status']!='sent') {
             if (is_array($to)) {
                 $to = implode(', ', $to);
             }
