@@ -57,12 +57,13 @@ class LoginController extends ViewController {
 	private function login($username, $password, $loginCount) {
 		global $_ASESSION;
 
-        $userId = UserDao::authenticate($username, $password);
-        if ($userId) {
+        $user = User::authenticate($username, $password);
+        if (isset($user)) {
+         	$userId = $user->getId();
             $_ASESSION->set('login_count', 0);
             $_ASESSION->set(ASession::$AUTHINDEX, $userId);
             if (param('keep_login')) {
-            	$token = LookupRememberUserDao::createRememberDao($userId);
+            	$token = $user->generateRememberMeToken();
             	if (isset($token)) {
             		setcookie(ASession::$COOKIE_TOKEN, $token, time()+2628000 , '/', 'account.confone.com', false, true);
             	}

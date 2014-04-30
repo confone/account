@@ -8,7 +8,7 @@ class LogoutController extends ViewController {
 
 		if (isset($_COOKIE[ASession::$COOKIE_TOKEN])) {
 			$cookieToken = $_COOKIE[ASession::$COOKIE_TOKEN];
-			LookupRememberUserDao::removeToken($cookieToken);
+			User::removeRememberMeToken($cookieToken);
 
 			setcookie(ASession::$COOKIE_TOKEN, $cookieToken, time()-3600 , '/', 'account.confone.com', false, true);
 		}

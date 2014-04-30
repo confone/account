@@ -1,5 +1,5 @@
 <?php
-abstract class TokenDaoParent extends AccountDaoBase {
+abstract class AccessTokenDaoParent extends AccountDaoBase {
 
     protected function init() {
         $this->var['id'] = '';
@@ -74,7 +74,7 @@ abstract class TokenDaoParent extends AccountDaoBase {
 // ======================================================================================== override
 
     public function getTableName() {
-        return 'token';
+        return 'access_token';
     }
 
     protected function getIdColumnName() {

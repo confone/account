@@ -6,7 +6,7 @@ class EmailUtil {
     const MANDRILL_KEY = '2BTjw7gutKe58cWGbbvmeA';
     const MANDRILL_URL = 'https://mandrillapp.com/api/1.0/messages/send.json';
 
-    public static function sendActivationEmail($email, $name, $accountTokenDao) {
+    public static function sendActivationEmail($email, $name, $uid, $accountTokenDao) {
     	global $base_host;
 
     	$to = array(array('email' => $email,'name' => $name, 'type' => 'to'));
@@ -16,7 +16,7 @@ class EmailUtil {
     	$html ='
 <html>
 <body>
-<a href="'.$base_host.'/activation?token='.$accountTokenDao.'">activate your account</a>
+<a href="'.$base_host.'/activation?sid='.$uid.'&token='.$accountTokenDao.'">activate your account</a>
 </body>
 </html>';
 

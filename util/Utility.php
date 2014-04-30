@@ -35,10 +35,9 @@ class Utility {
     	return $token;
     }
 
-    public static function generateActivationToken($mid='') {
-    	$token = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, rand(10, 12));
-    	$token.= $mid;
-    	$token.= substr(md5(date('Y-m-d H:i:s').rand(0, 100)), 0, rand(8, 10));
+    public static function generateActivationToken() {
+    	$token = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
+    	$token.= substr(md5(rand(0, 1000).date('Y-m-d H:i:s')), 0, 32);
 
     	return $token;
     }

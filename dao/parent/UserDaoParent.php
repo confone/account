@@ -8,6 +8,7 @@ abstract class UserDaoParent extends AccountDaoBase {
         $this->var['name'] = '';
         $this->var['profile_pic'] = '';
         $this->var['description'] = '';
+        $this->var['is_active'] = '';
         $this->var['last_login'] = '';
 
         $this->update['id'] = false;
@@ -16,6 +17,7 @@ abstract class UserDaoParent extends AccountDaoBase {
         $this->update['name'] = false;
         $this->update['profile_pic'] = false;
         $this->update['description'] = false;
+        $this->update['is_active'] = false;
         $this->update['last_login'] = false;
     }
 
@@ -61,6 +63,14 @@ abstract class UserDaoParent extends AccountDaoBase {
     }
     public function getDescription() {
         return $this->var['description'];
+    }
+
+    public function setIsActive($isActive) {
+        $this->var['is_active'] = $isActive;
+        $this->update['is_active'] = true;
+    }
+    public function getIsActive() {
+        return $this->var['is_active'];
     }
 
     public function setLastLogin($lastLogin) {

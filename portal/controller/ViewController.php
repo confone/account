@@ -62,7 +62,7 @@ abstract class ViewController {
 
 		if (isset($_COOKIE[ASession::$COOKIE_TOKEN])) {
 			$cookieToken = $_COOKIE[ASession::$COOKIE_TOKEN];
-			$userId = LookupRememberUserDao::getUserIdByCookieToken($cookieToken);
+			$userId = User::cookieLogin($cookieToken);
 
 			if ($userId>0) {
 				global $_ASESSION;

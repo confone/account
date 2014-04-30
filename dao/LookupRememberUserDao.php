@@ -3,7 +3,7 @@ class LookupRememberUserDao extends LookupRememberUserDaoParent {
 
 // ================================================ public function =================================================
 
-	public static function createRememberDao($userId) {
+	public static function createToken($userId) {
 		$digits = strlen((string)$userId) + 1;
 
 		do {

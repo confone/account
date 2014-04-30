@@ -3,7 +3,7 @@ class UserDao extends UserDaoParent {
 
 // ================================================ public function =================================================
 
-	public static function authenticate($email, $passwd) {
+	public static function getUserByEmailAndPassword($email, $passwd) {
 		$userId = LookupEmailUserDao::getUserIdByEmail($email);
 
 		if ($userId==0) { return false; }
@@ -11,10 +11,14 @@ class UserDao extends UserDaoParent {
 		$user = new UserDao($userId);
 
 		if ($user->getPassword()!=md5($passwd)) {
-			$userId = 0;
+			$user = null;
+		} else {
+			$date = gmdate('Y-m-d H:i:s');
+			$user->setLastLogin($date);
+			$user->save();
 		}
 
-		return $userId;
+		return $user;
 	}
 
 // ============================================ override functions ==================================================
@@ -22,6 +26,7 @@ class UserDao extends UserDaoParent {
 	protected function beforeInsert() {
 		$date = gmdate('Y-m-d H:i:s');
 		$this->setLastLogin($date);
+		$this->setIsActive('N');
 
 		$lookup = new LookupEmailUserDao();
 		$lookup->setUserId($this->getId());

@@ -54,22 +54,19 @@ class RegisterController extends ViewController {
 
 		Logger::info('Registering user - '.$email.' '.$name.' '.$password.':'.$cpassword);
 
-		$user = new UserDao();
-		$user->setEmail($email);
-		$user->setName($name);
-		$user->setPassword(md5($password));
-		$user->save();
+		$user = User::register($email, $name, $password, $cpassword);
 
-		if ($user->isFromDatabase()) {
+		if (isset($user)) {
 			global $_ASESSION;
             $_ASESSION->set(ASession::$AUTHINDEX, $user->getId());
             if (param('keep_login')) {
-				$token = LookupRememberUserDao::createRememberDao($user->getId());
+				$token = $user->generateRememberMeToken();
 	           	if (isset($token)) {
 	           		setcookie(ASession::$COOKIE_TOKEN, $token, time()+2628000, '/', 'account.confone.com', false, true);
 	           	}
             }
-			EmailUtil::sendActivationEmail($email, $name, Utility::generateActivationToken('.'.$user->getId().'.'));
+            $activationToken = $user->generateActivationToken();
+			EmailUtil::sendActivationEmail($email, $name, $user->getId(), $activationToken);
 
 			$this->redirect('/profile?msg=welcom');
 		}
