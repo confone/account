@@ -7,12 +7,12 @@ include 'view/include/header.php';
 <div id="login" class="sector">
 <div id="sign_title"><label>Reset Password</label></div>
 <form action="/reset-password" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-<input type="text" name="sid" value="<?=$uid ?>" />
-<input type="text" name="token" value="<?=$token ?>"/>
-<label class="field_label">Password:</label>
-<div class="field_div"><input class="text_field round4" type="text" name="password" /></div>
+<input type="hidden" name="sid" value="<?=$uid ?>" />
+<input type="hidden" name="token" value="<?=$token ?>"/>
+<label class="field_label">New Password:</label>
+<div class="field_div"><input class="text_field round4" type="password" name="password" /></div>
 <label class="field_label">Confirm Password:</label>
-<div class="field_div"><input class="text_field round4" type="text" name="cpassword" /></div>
+<div class="field_div"><input class="text_field round4" type="password" name="cpassword" /></div>
 <?php if(!empty($error)) { ?>
 <div id="error" class="round4"><?=$error ?></div>
 <?php } ?>

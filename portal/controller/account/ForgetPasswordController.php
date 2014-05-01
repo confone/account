@@ -31,19 +31,18 @@ class ForgetPasswordController extends ViewController {
 						'title' => 'Email Sent | Confone',
 						'view' => 'account/email-sent.php'
 					));
+					exit;
 		    	}
 			} else {
-            		$error = 'Email does not exist. <a href="register">Sign up now.</a>';
+            	$error = 'Email does not exist. <a href="register">Sign up now.</a>';
 			}
 		}
 
-		if (!empty($error)) {
-			$this->render( array(
-				'title' => 'Forget Password | Confone',
-				'view' => 'account/forgot.php',
-				'error' => isset($error) ? $error : null
-			));
-		}
+		$this->render( array(
+			'title' => 'Forget Password | Confone',
+			'view' => 'account/forgot.php',
+			'error' => isset($error) ? $error : null
+		));
 	}
 
 	protected function checkLogin() {

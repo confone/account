@@ -3,14 +3,14 @@ class ActivationTokenDao extends ActivationTokenDaoParent {
 
 // ============================================ override functions ==================================================
 
-	public static function tokenExist($userId, $token) {
+	public static function tokenExist($userId, $activationToken) {
 		$token = new ActivationTokenDao();
 		$token->setServerAddress($userId);
 
 		$builder = new QueryBuilder($token);
 		$res = $builder->select('COUNT(*) as count')
 					   ->where('user_id', $userId)
-					   ->where('activation_token', $token)
+					   ->where('activation_token', $activationToken)
 					   ->find();
 
 		return $res['count']>0;

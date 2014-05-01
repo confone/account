@@ -85,7 +85,7 @@ class User extends Model {
 
     public function hasResetPasswordToken($token) {
    		if (isset($this->dao)) {
-    		ResetTokenDao::tokenExist($this->dao->getId(), $token);
+    		return ResetTokenDao::tokenExist($this->dao->getId(), $token);
     	} else {
     		return false;
     	}
@@ -154,6 +154,10 @@ class User extends Model {
     public function setPassword($password) {
     	$password = md5($password);
         $this->dao->setPassword($password);
+    }
+    public function isActive() {
+    	$active = $this->dao->getIsActive();
+    	return $active=='Y';
     }
     public function setName($name) {
         $this->dao->setName($name);

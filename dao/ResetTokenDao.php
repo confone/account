@@ -3,14 +3,14 @@ class ResetTokenDao extends ResetTokenDaoParent {
 
 // ============================================ override functions ==================================================
 
-	public static function tokenExist($userId, $token) {
+	public static function tokenExist($userId, $resetToken) {
 		$token = new ResetTokenDao();
 		$token->setServerAddress($userId);
 
 		$builder = new QueryBuilder($token);
 		$res = $builder->select('COUNT(*) as count')
 					   ->where('user_id', $userId)
-					   ->where('reset_token', $token)
+					   ->where('reset_token', $resetToken)
 					   ->find();
 
 		return $res['count']>0;
