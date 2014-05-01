@@ -140,8 +140,10 @@ class User extends Model {
 	}
     public function persist() {
 		if (isset($this->dao)) {
-    		$this->dao->save();
+    		return $this->dao->save();
 		}
+
+		return false;
     }
 
 // =============================================================================== accesser
@@ -150,6 +152,7 @@ class User extends Model {
         return $this->dao->getEmail();
     }
     public function setPassword($password) {
+    	$password = md5($password);
         $this->dao->setPassword($password);
     }
     public function setName($name) {
