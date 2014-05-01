@@ -3,23 +3,6 @@ class UserDao extends UserDaoParent {
 
 // ================================================ public function =================================================
 
-	public static function getUserByEmailAndPassword($email, $passwd) {
-		$userId = LookupEmailUserDao::getUserIdByEmail($email);
-
-		if ($userId==0) { return false; }
-
-		$user = new UserDao($userId);
-
-		if ($user->getPassword()!=md5($passwd)) {
-			$user = null;
-		} else {
-			$date = gmdate('Y-m-d H:i:s');
-			$user->setLastLogin($date);
-			$user->save();
-		}
-
-		return $user;
-	}
 
 // ============================================ override functions ==================================================
 

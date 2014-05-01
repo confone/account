@@ -15,20 +15,31 @@ class User extends Model {
 	}
 
     public static function authenticate($email, $passwd) {
-    	$userDao = UserDao::getUserByEmailAndPassword($email, $passwd);
-    	if (isset($userDao)) {
-    		$user = new User($userDao);
-    		return $user;
-    	} else {
-    		return null;
-    	}
+		$userId = LookupEmailUserDao::getUserIdByEmail($email);
+		if ($userId!=0) {
+			$user = new User($userId);
+			$dbPass = $user->dao->getPassword();
+			$inPass = Utility::saltString(md5($passwd));
+			if (Utility::compareSaltedString($dbPass, $inPass, 5)) {
+				$date = gmdate('Y-m-d H:i:s');
+				$user->dao->setLastLogin($date);
+				$user->dao->save();
+			} else {
+				$user = null;
+			}
+		} else {
+			$user = null;
+		}
+
+		return $user;
     }
 
     public static function register($email, $name, $password, $cpassword) {
 		$userDao = new UserDao();
 		$userDao->setEmail($email);
 		$userDao->setName($name);
-		$userDao->setPassword(md5($password));
+		$md5Pass = md5($password);
+		$userDao->setPassword(Utility::saltString($md5Pass));
 		$userDao->save();
 
 		if ($userDao->isFromDatabase()) {
@@ -152,7 +163,8 @@ class User extends Model {
         return $this->dao->getEmail();
     }
     public function setPassword($password) {
-    	$password = md5($password);
+		$md5Pass = md5($password);
+    	$password = Utility::saltString($md5Pass);
         $this->dao->setPassword($password);
     }
     public function isActive() {

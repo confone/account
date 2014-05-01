@@ -52,5 +52,32 @@ class Utility {
 	public static function hashString($str) {
 		return abs(crc32($str));
 	}
+
+	public static function saltString($str, $length=5) {
+		$salt = substr(md5(rand(0, 1000).date('Y-m-d H:i:s')), 0, $length);
+		$str = substr($str, $length);
+
+		return $salt.$str;
+	}
+
+	public static function compareSaltedString($str1, $str2, $length, $front=true) {
+		$len1 = strlen($str1);
+		$len2 = strlen($str2);
+
+		if ($len1==$len2) {
+			if ($front) {
+				$salt1 = substr($str1, $length);
+				$salt2 = substr($str2, $length);
+			} else {
+				$length = $length*-1;
+				$salt1 = substr($str1, 0, $length);
+				$salt2 = substr($str2, 0, $length);
+			}
+
+			return $salt1==$salt2;
+		}
+
+		return false;
+	}
 }
 ?>
