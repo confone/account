@@ -6,7 +6,7 @@ class EmailUtil {
     const MANDRILL_KEY = '2BTjw7gutKe58cWGbbvmeA';
     const MANDRILL_URL = 'https://mandrillapp.com/api/1.0/messages/send.json';
 
-    public static function sendActivationEmail($email, $name, $uid, $accountTokenDao) {
+    public static function sendActivationEmail($email, $name, $uid, $accountToken) {
     	global $base_host;
 
     	$to = array(array('email' => $email,'name' => $name, 'type' => 'to'));
@@ -16,19 +16,26 @@ class EmailUtil {
     	$html ='
 <html>
 <body>
-<a href="'.$base_host.'/activation?sid='.$uid.'&token='.$accountTokenDao.'">activate your account</a>
+<a href="'.$base_host.'/activation?sid='.$uid.'&token='.$accountToken.'">activate your account</a>
 </body>
 </html>';
 
     	self::send($to, $subject, $html);
     }
 
-    public static function sendForgetPasswordEmail($email, $name, $accountTokenDao) {
+    public static function sendForgetPasswordEmail($email, $name, $uid, $resetToken) {
+    	global $base_host;
+
 		$to = array(array('email' => $email,'name' => $name, 'type' => 'to'));
 
     	$subject = 'Forget Password - Reset Your Password';
 
-    	$html = '';
+    	$html ='
+<html>
+<body>
+<a href="'.$base_host.'/reset-password?sid='.$uid.'&token='.$resetToken.'">reset your password</a>
+</body>
+</html>';
 
     	self::send($to, $subject, $html);
     }

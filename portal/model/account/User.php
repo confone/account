@@ -3,6 +3,17 @@ class User extends Model {
 
 	private $dao = null;
 
+	public static function getUserByEmail($email) {
+		$userId = LookupEmailUserDao::getUserIdByEmail($email);
+		if ($userId!=0) {
+			$user = new User($userId);
+		} else {
+			$user = null;
+		}
+
+		return $user;
+	}
+
     public static function authenticate($email, $passwd) {
     	$userDao = UserDao::getUserByEmailAndPassword($email, $passwd);
     	if (isset($userDao)) {
@@ -45,7 +56,21 @@ class User extends Model {
 		return $token;
     }
 
-    public function generateActivationToken() {
+    public function hasAccountActivationToken($token) {
+   		if (isset($this->dao)) {
+    		ActivationTokenDao::tokenExist($this->dao->getId(), $token);
+    	} else {
+    		return false;
+    	}
+    }
+
+    public function consumeAccountActivationToken($token) {
+    	if (isset($this->dao)) {
+    		ActivationTokenDao::consumeToken($this->dao->getId(), $token);
+    	}
+    }
+
+    public function generateAccountActivationToken() {
     	$token = null;
     	if (isset($this->dao)) {
     		$activationToken = new ActivationTokenDao();
@@ -53,6 +78,33 @@ class User extends Model {
     		$activationToken->save();
 
     		$token = $activationToken->getActivationToken();
+    	}
+
+    	return $token;
+    }
+
+    public function hasResetPasswordToken($token) {
+   		if (isset($this->dao)) {
+    		ResetTokenDao::tokenExist($this->dao->getId(), $token);
+    	} else {
+    		return false;
+    	}
+    }
+
+    public function consumeResetPasswordToken($token) {
+    	if (isset($this->dao)) {
+    		ResetTokenDao::consumeToken($this->dao->getId(), $token);
+    	}
+    }
+
+    public function generateResetPasswordToken() {
+    	$token = null;
+    	if (isset($this->dao)) {
+    		$resetToken = new ResetTokenDao();
+    		$resetToken->setUserId($this->dao->getId());
+    		$resetToken->save();
+
+    		$token = $resetToken->getResetToken();
     	}
 
     	return $token;

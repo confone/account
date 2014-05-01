@@ -40,6 +40,19 @@ CREATE INDEX {$dbName}_activation_token_user_id_index ON {$dbName}.activation_to
 CREATE INDEX {$dbName}_activation_token_token_index ON {$dbName}.activation_token (activation_token(64));
 
 
+CREATE TABLE {$dbName}.reset_token
+(
+	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	user_id INT(10) UNSIGNED,
+	reset_token VARCHAR(65),
+
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE INDEX {$dbName}_reset_token_user_id_index ON {$dbName}.reset_token (user_id);
+CREATE INDEX {$dbName}_reset_token_token_index ON {$dbName}.reset_token (reset_token(64));
+
+
 GRANT ALL ON {$dbName}.* TO '{$uname}'@'%' IDENTIFIED BY '{$passwd}';
 
 INSERT INTO {$dbName}.user(email, password, name, profile_pic, description, last_login)

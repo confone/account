@@ -8,5 +8,9 @@ class ResetPasswordController extends ViewController {
 			'view' => 'account/reset-password.php'
 		));
 	}
+
+	protected function checkLogin() {
+		return false;
+	}
 }
 ?>

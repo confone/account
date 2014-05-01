@@ -42,6 +42,13 @@ class Utility {
     	return $token;
     }
 
+    public static function generateResetPasswordToken() {
+    	$token = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
+    	$token.= substr(md5(rand(0, 1000).date('Y-m-d H:i:s')), 0, 32);
+
+    	return $token;
+    }
+
 	public static function hashString($str) {
 		return abs(crc32($str));
 	}

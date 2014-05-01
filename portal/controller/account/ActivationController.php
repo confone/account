@@ -13,5 +13,9 @@ class ActivationController extends ViewController {
 			'view' => 'account/activation.php'
 		));
 	}
+
+	protected function checkLogin() {
+		return false;
+	}
 }
 ?>
