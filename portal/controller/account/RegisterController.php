@@ -57,8 +57,6 @@ class RegisterController extends ViewController {
 		$user = User::register($email, $name, $password, $cpassword);
 
 		if (isset($user)) {
-			global $_ASESSION;
-            $_ASESSION->set(ASession::$AUTHINDEX, $user->getId());
             if (param('keep_login')) {
 				$token = $user->generateRememberMeToken();
 	           	if (isset($token)) {
@@ -68,7 +66,9 @@ class RegisterController extends ViewController {
             $activationToken = $user->generateAccountActivationToken();
 			EmailUtil::sendActivationEmail($email, $name, $user->getId(), $activationToken);
 
-			$this->redirect('/profile?msg=welcom');
+			global $_ASESSION;
+            $_ASESSION->set(ASession::$ACTIVATION, $user->getId());
+			$this->redirect('/pending');
 		}
 	}
 

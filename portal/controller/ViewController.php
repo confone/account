@@ -18,6 +18,11 @@ abstract class ViewController {
 		exit;
 	}
 
+	protected function response($body) {
+		echo json_encode($body);
+		exit;
+	}
+
 	public function execute() {
 		$this->cookieLogin();
 

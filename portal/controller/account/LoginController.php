@@ -58,7 +58,13 @@ class LoginController extends ViewController {
 		global $_ASESSION;
 
         $user = User::authenticate($username, $password);
+
         if (isset($user)) {
+	        if (!$user->isActive()) {
+	            $_ASESSION->set(ASession::$ACTIVATION, $userId);
+	            $this->redirect('/pending');
+	        }
+
          	$userId = $user->getId();
             $_ASESSION->set('login_count', 0);
             $_ASESSION->set(ASession::$AUTHINDEX, $userId);
