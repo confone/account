@@ -63,8 +63,6 @@ class RegisterController extends ViewController {
 	           		setcookie(ASession::$COOKIE_TOKEN, $token, time()+2628000, '/', 'account.confone.com', false, true);
 	           	}
             }
-            $activationToken = $user->generateAccountActivationToken();
-			EmailUtil::sendActivationEmail($email, $name, $user->getId(), $activationToken);
 
 			global $_ASESSION;
             $_ASESSION->set(ASession::$ACTIVATION, $user->getId());

@@ -9,7 +9,7 @@ class PendingController extends ViewController {
 			$user = new User($userId);
 
 			$activationToken = $user->generateAccountActivationToken();
-			EmailUtil::sendActivationEmail($username, $user->getName(), $user->getId(), $activationToken);
+			EmailUtil::sendActivationEmail($user->getEmail(), $user->getName(), $user->getId(), $activationToken);
 		} else {
 			$this->redirect('/login');
 		}

@@ -168,8 +168,12 @@ class User extends Model {
         $this->dao->setPassword($password);
     }
     public function isActive() {
-    	$active = $this->dao->getIsActive();
-    	return $active=='Y';
+    	if (isset($this->dao)) {
+	    	$active = $this->dao->getIsActive();
+	    	return $active=='Y';
+    	} else {
+    		return false;
+    	}
     }
     public function setName($name) {
         $this->dao->setName($name);

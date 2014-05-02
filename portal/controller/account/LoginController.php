@@ -37,6 +37,7 @@ class LoginController extends ViewController {
 			'recaptcha' => $loginCount>=2,
 			'email' => $username,
 			'redirect_uri' => empty($redirect_uri) ? '/profile' : $redirect_uri,
+			'message' => param('msg'),
 			'error' => isset($error) ? $error : null
 		));
 	}

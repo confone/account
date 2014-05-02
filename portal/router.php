@@ -32,7 +32,7 @@ if (!empty($_URI)) {
 	    foreach ($getParams as $getParam) {
 	        $pair = explode('=', $getParam, 2);
 	        if (sizeof($pair)==2) {
-	            $_GET[$pair[0]] = urlencode($pair[1]);
+	            $_GET[$pair[0]] = urlencode(urldecode($pair[1]));
 	        }
 	    }
 

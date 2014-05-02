@@ -7,6 +7,9 @@ include 'view/include/header.php';
 <script type="text/javascript">var RecaptchaOptions = { theme : 'white' };</script>
 <div id="login" class="sector">
 <div id="sign_title"><label>Sign in to Confone</label></div>
+<?php if(!empty($message)) { ?>
+<div id="info" class="round4"><?=$message ?></div>
+<?php } ?>
 <form action="/login" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
 <label class="field_label">Email:</label>
 <div class="field_div"><input class="text_field round4" type="text" name="username" value="<?=(isset($email) ? $email : '') ?>" /></div>

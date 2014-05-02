@@ -79,6 +79,16 @@ div#error {
 	background-color: #FFDDDD;
 	color: #FF3333;
 }
+div#info {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+	padding: 15px;
+	font-size: .8em;
+	font-weight: bold;
+	background-color: #DDFFDD;
+	color: green;
+}
 .right {
 	float: right;
 }

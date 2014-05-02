@@ -54,6 +54,3 @@ CREATE INDEX {$dbName}_reset_token_token_index ON {$dbName}.reset_token (reset_t
 
 
 GRANT ALL ON {$dbName}.* TO '{$uname}'@'%' IDENTIFIED BY '{$passwd}';
-
-INSERT INTO {$dbName}.user(email, password, name, profile_pic, description, last_login)
-VALUES ('admin@confone.com', MD5('password'), 'Peng Shen', '', '', NOW());

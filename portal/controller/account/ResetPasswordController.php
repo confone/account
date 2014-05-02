@@ -14,7 +14,8 @@ class ResetPasswordController extends ViewController {
 				if ($user->hasResetPasswordToken($token)) {
 					$user->setPassword($passwd);
 					if ($user->persist()) {
-						$this->redirect('/login?message=');
+						$message = 'Your password has been reset successfully. Please sign in now!';
+						$this->redirect('/login?msg='.urlencode($message));
 					} else {
 						$error = 'System temporarily not available!';
 					}

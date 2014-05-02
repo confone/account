@@ -6,9 +6,11 @@ class ActivationController extends ViewController {
 		$token = param('token');
 
 		$user = new User($uid);
-		$success = $user->activate($token);
 
-		if (!$success) {
+		if ($user->activate($token)) {
+			$message = 'Your account has been activated successfully. Please sign in now!';
+			$this->redirect('/login?msg='.urlencode($message));
+		} else {
 			if ($user->isActive()) {
 				$error = 'Your account is already activated, please <a href="/login">Sign in</a>';
 			} else {
@@ -19,7 +21,6 @@ class ActivationController extends ViewController {
 		$this->render( array(
 			'title' => 'Account Activation | Confone',
 			'view' => 'account/activation.php',
-			'success' => $success,
 			'error' => isset($error) ? $error :  null
 		));
 	}
