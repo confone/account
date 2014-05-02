@@ -16,14 +16,14 @@ class ActivationTokenDao extends ActivationTokenDaoParent {
 		return $res['count']>0;
 	}
 
-	public static function consumeToken($userId, $token) {
+	public static function consumeToken($userId, $activationToken) {
 		$token = new ActivationTokenDao();
 		$token->setServerAddress($userId);
 
 		$builder = new QueryBuilder($token);
 		$res = $builder->delete()
 					   ->where('user_id', $userId)
-					   ->where('activation_token', $token)
+					   ->where('activation_token', $activationToken)
 					   ->query();
 	}
 

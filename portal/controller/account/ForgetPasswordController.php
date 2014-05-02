@@ -29,7 +29,8 @@ class ForgetPasswordController extends ViewController {
 
 					$this->render( array(
 						'title' => 'Email Sent | Confone',
-						'view' => 'account/email-sent.php'
+						'view' => 'account/email-sent.php',
+						'user' => $user
 					));
 					exit;
 		    	}

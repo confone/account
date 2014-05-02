@@ -16,14 +16,14 @@ class ResetTokenDao extends ResetTokenDaoParent {
 		return $res['count']>0;
 	}
 
-	public static function consumeToken($userId, $token) {
+	public static function consumeToken($userId, $resetToken) {
 		$token = new ResetTokenDao();
 		$token->setServerAddress($userId);
 
 		$builder = new QueryBuilder($token);
 		$res = $builder->delete()
 					   ->where('user_id', $userId)
-					   ->where('reset_token', $token)
+					   ->where('reset_token', $resetToken)
 					   ->query();
 	}
 
