@@ -24,15 +24,9 @@ class ForgetPasswordController extends ViewController {
 		    	if (!empty($recaptcha_private_key) && !$resp->is_valid) {
             		$error = 'Invalid ReCAPTCHA, please try again.';
 		    	} else {
-					$token = $user->generateResetPasswordToken();
-					EmailUtil::sendForgetPasswordEmail($email, $user->getName(), $user->getId(), $token);
-
-					$this->render( array(
-						'title' => 'Email Sent | Confone',
-						'view' => 'account/email-sent.php',
-						'user' => $user
-					));
-					exit;
+		    		global $_ASESSION;
+		    		$_ASESSION->set(ASession::$RESETPASSWD, $user->getId());
+					$this->redirect('/reset-email');
 		    	}
 			} else {
             	$error = 'Email does not exist. <a href="register">Sign up now.</a>';

@@ -3,6 +3,7 @@ class ASession {
 
     public static $AUTHINDEX = 'auth_index';
     public static $ACTIVATION = '_activation';
+    public static $RESETPASSWD = '_resetpasswd';
 	public static $SESSION_KEY = 'CONFONESESSIONID';
 	public static $COOKIE_TOKEN = 'CONFONECTOKEN';
 
