@@ -5,9 +5,15 @@ class ActivationController extends ViewController {
 		$uid = param('sid');
 		$token = param('token');
 
+		if (empty($uid) || empty($token)) {
+			$this->redirect('/login');
+		}
+
 		$user = new User($uid);
 
 		if ($user->activate($token)) {
+			global $_ASESSION;
+			$_ASSESSION->set(ASession::$ACTIVATION, null);
 			$message = 'Your account has been activated successfully. Please sign in now!';
 			$this->redirect('/login?msg='.urlencode($message));
 		} else {

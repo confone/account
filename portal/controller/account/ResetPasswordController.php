@@ -2,18 +2,23 @@
 class ResetPasswordController extends ViewController {
 
 	protected function control() {
-
-		$userId = param('sid');
+		$uid = param('sid');
 		$token = param('token');
 		$passwd = param('password');
+
+		if (empty($uid) || empty($token)) {
+			$this->redirect('/forget');
+		}
 
 		if (isset($passwd)) {
 			$cpasswd = param('cpassword');
 			if ($passwd==$cpasswd) {
-				$user = new User($userId);
+				$user = new User($uid);
 				if ($user->hasResetPasswordToken($token)) {
 					$user->setPassword($passwd);
 					if ($user->persist()) {
+						global $_ASESSION;
+						$_ASESSION->set(ASession::$RESETPASSWD, null);
 						$message = 'Your password has been reset successfully. Please sign in now!';
 						$this->redirect('/login?msg='.urlencode($message));
 					} else {
@@ -30,7 +35,7 @@ class ResetPasswordController extends ViewController {
 		$this->render( array(
 			'title' => 'Reset Password | Confone',
 			'view' => 'account/reset-password.php',
-			'uid' => $userId,
+			'uid' => $uid,
 			'token' => $token,
 			'error' => isset($error) ? $error : null
 		));
