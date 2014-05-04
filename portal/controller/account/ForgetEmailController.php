@@ -8,9 +8,6 @@ class ForgetEmailController extends ViewController {
 			$userId = $_ASESSION->get(ASession::$RESETPASSWD);
 			$user = new User($userId);
 
-			$token = $user->generateResetPasswordToken();
-			EmailUtil::sendForgetPasswordEmail($user->getEmail(), $user->getName(), $user->getId(), $token);
-
 			$this->render( array(
 				'title' => 'Email Sent | Confone',
 				'view' => 'account/email-sent.php',

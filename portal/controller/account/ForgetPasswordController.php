@@ -26,6 +26,10 @@ class ForgetPasswordController extends ViewController {
 		    	} else {
 		    		global $_ASESSION;
 		    		$_ASESSION->set(ASession::$RESETPASSWD, $user->getId());
+
+					$token = $user->generateResetPasswordToken();
+					EmailUtil::sendForgetPasswordEmail($email, $user->getName(), $user->getId(), $token);
+
 					$this->redirect('/reset-email');
 		    	}
 			} else {

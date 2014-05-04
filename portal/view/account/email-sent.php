@@ -8,7 +8,7 @@ include 'view/include/header.php';
 <div id="sign_title"><label>Reset Password Email</label></div>
 <div>
 An email with the reset password link has send to <?=$user->getEmail() ?>, please login in your email and click on the link to reset your password.
-Have not received the reset password email? <a href="/reset-email">Send again</a>.
+Have not received the reset password email? <a href="javascript:sendResetPasswordEmail();">Send again</a>.
 </div>
 </div>
 <?php 

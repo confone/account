@@ -66,6 +66,8 @@ class RegisterController extends ViewController {
 
 			global $_ASESSION;
             $_ASESSION->set(ASession::$ACTIVATION, $user->getId());
+			$activationToken = $user->generateAccountActivationToken();
+			EmailUtil::sendActivationEmail($user->getEmail(), $user->getName(), $user->getId(), $activationToken);
 			$this->redirect('/pending');
 		}
 	}
