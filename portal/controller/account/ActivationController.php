@@ -13,7 +13,7 @@ class ActivationController extends ViewController {
 
 		if ($user->activate($token)) {
 			global $_ASESSION;
-			$_ASSESSION->set(ASession::$ACTIVATION, null);
+			$_ASESSION->set(ASession::$ACTIVATION, null);
 			$message = 'Your account has been activated successfully. Please sign in now!';
 			$this->redirect('/login?msg='.urlencode($message));
 		} else {

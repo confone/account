@@ -62,7 +62,7 @@ class LoginController extends ViewController {
 
         if (isset($user)) {
 	        if (!$user->isActive()) {
-	            $_ASESSION->set(ASession::$ACTIVATION, $userId);
+	            $_ASESSION->set(ASession::$ACTIVATION, $user->getId());
 				$activationToken = $user->generateAccountActivationToken();
 				EmailUtil::sendActivationEmail($user->getEmail(), $user->getName(), $user->getId(), $activationToken);
 	            $this->redirect('/pending');
