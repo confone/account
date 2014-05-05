@@ -28,7 +28,7 @@ class ResetPasswordController extends ViewController {
 					// TODO: invalid reset password token.
 				}
 			} else {
-				$error = 'Password and Confirm Password does not match.';
+				$error = 'Passwords does not match.';
 			}
 		}
 

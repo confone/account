@@ -55,6 +55,9 @@ label.keep_login {
 div.top20px {
 	margin-top: 20px;
 }
+div.top30px {
+	margin-top: 30px;
+}
 label#or {
 	color: #666;
 	margin-left:10px;
@@ -91,4 +94,13 @@ div#info {
 }
 .right {
 	float: right;
+}
+div#email-message {
+	padding: 80px 0 100px 0;
+	color: #2f4f4f;
+	margin: 0 auto;
+	width: 560px;
+}
+div.size09 {
+	font-size:.9em;
 }

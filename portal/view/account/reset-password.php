@@ -16,12 +16,8 @@ include 'view/include/header.php';
 <?php if(!empty($error)) { ?>
 <div id="error" class="round4"><?=$error ?></div>
 <?php } ?>
-<div class="top20px">
+<div class="top30px">
 <input class="button round4" type="submit" value="Send" />
-<label id="or">or</label><a href="/register">Sign up for Confone</a><br>
-</div>
-<div class="top20px">
-Have an account? <a href="/login">Sign in now!</a>
 </div>
 </form>
 </div>

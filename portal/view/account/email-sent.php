@@ -4,11 +4,12 @@ $stylesheets = array('account.css');
 
 include 'view/include/header.php';
 ?>
-<div id="login" class="sector">
-<div id="sign_title"><label>Reset Password Email</label></div>
+<div id="email-message">
+<div id="sign_title"><label><?=$display['title'] ?></label></div>
 <div>
-An email with the reset password link has send to <?=$user->getEmail() ?>, please login in your email and click on the link to reset your password.
-Have not received the reset password email? <a href="javascript:sendResetPasswordEmail();">Send again</a>.
+<div class='size09'><?=$display['send_to'] ?> <label style="font-size:.8em;color:blue"><?=$user->getEmail() ?></label><?=$display['click_link'] ?></div>
+<br>
+<div class='size09'><?=$display['not_receive'] ?> <a href="javascript:sendResetPasswordEmail();"><?=$display['send_again'] ?></a></div>
 </div>
 </div>
 <?php 

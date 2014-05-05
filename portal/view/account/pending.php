@@ -4,11 +4,12 @@ $stylesheets = array('account.css');
 
 include 'view/include/header.php';
 ?>
-<div id="login" class="sector">
-<div id="sign_title"><label>Account Activation Pending</label></div>
+<div id="email-message">
+<div id="sign_title"><label><?=$display['title'] ?></label></div>
 <div>
-An email with the activation link has send to <?=$user->getEmail() ?>, please login in your email and click on the link to activate your account.
-Have not received the activation email? <a href="javascript:sendActivationEmail()">Send again</a>.
+<div class='size09'><?=$display['send_to'] ?> <label style="font-size:.8em;color:blue"><?=$user->getEmail() ?></label><?=$display['click_link'] ?></div>
+<br>
+<div class='size09'><?=$display['not_receive'] ?> <a href="javascript:sendActivationEmail()"><?=$display['send_again'] ?></a></div>
 </div>
 </div>
 <?php 
