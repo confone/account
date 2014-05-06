@@ -38,6 +38,11 @@ $session_expires_in = 900;
 
 
 //=======================================================================================
+// Profile image directory
+$profile_image_dir = '/opt/confone/account/images/';
+
+
+//=======================================================================================
 // logging information
 // INFO=4, WARN=3, ERROR=2, FATAL=1, NOTHING=0
 $log_level = 4;

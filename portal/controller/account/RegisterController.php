@@ -66,10 +66,27 @@ class RegisterController extends ViewController {
 
 			global $_ASESSION;
             $_ASESSION->set(ASession::$ACTIVATION, $user->getId());
+            $this->createProfileImage($user);
 			$activationToken = $user->generateAccountActivationToken();
 			EmailUtil::sendActivationEmail($user->getEmail(), $user->getName(), $user->getId(), $activationToken);
 			$this->redirect('/pending');
 		}
+	}
+
+	private function createProfileImage(&$user) {
+		global $profile_image_dir;
+		
+		include "util/qrcode.php";
+
+		$filename = $profile_image_dir.'profile_pic_'.$user->getId().'.png';
+
+		$errorCorrectionLevel = 'L';
+		$matrixPointSize = 4;
+
+		$png = QRcode::png($user->getName(), $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+
+		$user->setProfilePic('profile_pic_'.$user->getId().'.png');
+		$user->persist();
 	}
 
 	protected function checkLogin() {
