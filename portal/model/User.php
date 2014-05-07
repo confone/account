@@ -185,8 +185,8 @@ class User extends Model {
         $this->dao->setProfilePic($profilePic);
     }
     public function getProfilePic() {
-    	global $profile_image_dir;
-        return $profile_image_dir.$this->dao->getProfilePic();
+    	global $profile_url;
+        return $profile_url.$this->dao->getProfilePic();
     }
     public function setDescription($description) {
         $this->dao->setDescription($description);

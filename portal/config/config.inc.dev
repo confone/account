@@ -4,6 +4,7 @@ $www_url = 'http://local.www.confone.com';
 $security_url = 'http://local.security.confone.com';
 $content_url = 'http://local.content.confone.com';
 
+$profile_url = $base_host.'/rest/display/profile/';
 
 // =======================================================================================
 // rECAPTCHA keys

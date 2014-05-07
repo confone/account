@@ -4,6 +4,7 @@ $www_url = 'https://staging.www.confone.com';
 $security_url = 'https://staging.security.confone.com';
 $content_url = 'https://staging.content.confone.com';
 
+$profile_url = $base_host.'/rest/display/profile/';
 
 // =======================================================================================
 // rECAPTCHA keys

@@ -6,6 +6,7 @@ $base_uri = '/rest';
 //=======================================================================================
 // auto include directory information
 $autoload_dirs = array( 'handler', 
+						'handler/profile',
                         'requester', 
                         'validator', 
                         '../util', 
@@ -17,6 +18,11 @@ $autoload_dirs = array( 'handler',
 $cache_servers = array (
 '192.168.0.123' => '11211'
 );
+
+
+//=======================================================================================
+// Profile image directory
+$profile_image_dir = '/opt/confone/account/images/';
 
 
 //=======================================================================================

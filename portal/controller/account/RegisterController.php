@@ -78,14 +78,14 @@ class RegisterController extends ViewController {
 		
 		include "util/qrcode.php";
 
-		$filename = $profile_image_dir.'profile_pic_'.$user->getId().'.png';
+		$filename = Utility::randomString(10).'_'.$user->getId();
 
 		$errorCorrectionLevel = 'L';
 		$matrixPointSize = 4;
 
-		$png = QRcode::png($user->getName(), $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+		$png = QRcode::png($user->getName(), $profile_image_dir.$filename, $errorCorrectionLevel, $matrixPointSize, 2);
 
-		$user->setProfilePic('profile_pic_'.$user->getId().'.png');
+		$user->setProfilePic($filename);
 		$user->persist();
 	}
 

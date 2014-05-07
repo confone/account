@@ -27,6 +27,10 @@ class Utility {
         return $ip;
     }
 
+    public static function randomString($length) {
+    	return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+    }
+
     public static function generateAccountToken($mid='') {
     	$token = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, rand(8, 10));
     	$token.= '.'.$mid.'.';
