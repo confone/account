@@ -77,5 +77,19 @@ class ASession {
 		$this->sessionCache->delete($this->sessionId);
 		setcookie(ASession::$SESSION_KEY, $this->sessionId, time()-3600, '/', 'confone.com', false, true);
 	}
+
+	public function hasUserId() {
+		global $session_expires_in;
+		$session = $this->sessionCache->get($this->sessionId);
+		$this->sessionCache->set($this->sessionId, $session, $session_expires_in);
+		return isset($session[self::$AUTHINDEX]);
+	}
+
+	public function getUserId() {
+		global $session_expires_in;
+		$session = $this->sessionCache->get($this->sessionId);
+		$this->sessionCache->set($this->sessionId, $session, $session_expires_in);
+		return $session[self::$AUTHINDEX];
+	}
 }
 ?>
