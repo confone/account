@@ -76,7 +76,7 @@ class RegisterController extends ViewController {
 	private function createProfileImage(&$user) {
 		global $profile_image_dir;
 		
-		include "util/qrcode.php";
+		include "../util/qrcode.php";
 
 		$filename = Utility::randomString(10).'_'.$user->getId();
 
