@@ -71,6 +71,8 @@ class LoginController extends ViewController {
          	$userId = $user->getId();
             $_ASESSION->set('login_count', 0);
             $_ASESSION->set(ASession::$AUTHINDEX, $userId);
+			$_ASESSION->set(ASession::$PROFILEIMG, $user->getProfilePic());
+			$_ASESSION->set(ASession::$PROFILENAME, $user->getName());
             if (param('keep_login')) {
             	$token = $user->generateRememberMeToken();
             	if (isset($token)) {

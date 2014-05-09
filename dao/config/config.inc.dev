@@ -48,4 +48,15 @@ $dbconfig['account_lookup_developer'] =
 			'localhost' => array('min'=>0, 'max'=>0)
 		) 
 	);
+
+$dbconfig['account_client'] =
+	array (
+		'total_shards' => 1,
+		'shards_digit' => 1,
+		'username' => 'accountuser',
+		'password' => 'password',
+		'server_list' => array (
+			'localhost' => array('min'=>0, 'max'=>0)
+		) 
+	);
 ?>

@@ -52,4 +52,15 @@ $dbconfig['account_lookup_developer'] =
 			'192.168.175.236' => array('min'=>2, 'max'=>3)
 		) 
 	);
+
+$dbconfig['account_client'] =
+	array (
+		'total_shards' => 1,
+		'shards_digit' => 1,
+		'username' => 'accountuser',
+		'password' => 'password',
+		'server_list' => array (
+			'192.168.175.105' => array('min'=>0, 'max'=>1)
+		) 
+	);
 ?>

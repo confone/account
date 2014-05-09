@@ -2,6 +2,8 @@
 class ASession {
 
     public static $AUTHINDEX = 'auth_index';
+    public static $PROFILEIMG = 'auth_profile_img';
+    public static $PROFILENAME = 'auth_profile_name';
     public static $ACTIVATION = '_activation';
     public static $RESETPASSWD = '_resetpasswd';
 	public static $SESSION_KEY = 'CONFONESESSIONID';

@@ -69,6 +69,8 @@ abstract class ViewController {
 				if ($user->isActive()) {
 					global $_ASESSION;
 					$_ASESSION->set(ASession::$AUTHINDEX, $userId);
+					$_ASESSION->set(ASession::$PROFILEIMG, $user->getProfilePic());
+					$_ASESSION->set(ASession::$PROFILENAME, $user->getName());
 					setcookie(ASession::$COOKIE_TOKEN, $cookieToken, time()+2628000 , '/', 'account.confone.com', false, true);
 				}
 			}
