@@ -985,7 +985,18 @@
             $base_image =ImageCreate($imgW, $imgH);
             
             $col[0] = ImageColorAllocate($base_image,255,255,255);
-            $col[1] = ImageColorAllocate($base_image,0,0,0);
+//            $col[1] = ImageColorAllocate($base_image,0,0,0);
+
+            $colors[0] = ImageColorAllocate($base_image,0,0,0);			// black
+            $colors[1] = ImageColorAllocate($base_image,128,0,0);		// red
+            $colors[2] = ImageColorAllocate($base_image,0,128,0);		// green
+            $colors[3] = ImageColorAllocate($base_image,0,0,128);		// blue
+            $colors[4] = ImageColorAllocate($base_image,128,128,128);	// gray
+            $colors[5] = ImageColorAllocate($base_image,128,128,0);		// olive
+            $colors[6] = ImageColorAllocate($base_image,128,0,128);		// purple
+            $colors[7] = ImageColorAllocate($base_image,0,128,128);		// teal
+
+            $col[1] = $colors[rand(0, 7)];
 
             imagefill($base_image, 0, 0, $col[0]);
 
