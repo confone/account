@@ -41,6 +41,8 @@ class ExternalHeaderController extends ViewController {
 			";
 		}
 
+		$content = str_replace(PHP_EOL, '', $content);
+
 $script = <<<SCRIPT
 function showHideProfile() {
 	var div = document.getElementById('profile-hide');
