@@ -12,7 +12,7 @@ $in = <<<LOGGED_IN
 LOGGED_IN;
 
 $out = <<<LOGGED_OUT
-<div style=\"width:200px;\"><button onclick=\"window.location.href='http://local.account.confone.com/register'\" class=\"round4 register\">Sign Up</button><button onclick=\"window.location.href='http://local.account.confone.com/login'\" class=\"round4 login\">Login</button></div>
+<div style=\"width:200px;\"><button onclick=\"window.location.href='$base_host/register'\" class=\"round4 register\">Sign Up</button><button onclick=\"window.location.href='$base_host/login'\" class=\"round4 login\">Login</button></div>
 LOGGED_OUT;
 
 		$content = ($_ASESSION->exist(ASession::$AUTHINDEX)) ? $in : $out;
