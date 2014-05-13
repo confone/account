@@ -13,6 +13,7 @@ class ExternalHeaderController extends ViewController {
 	
 			$user = new User($userId);
 			$src = $user->getProfilePic();
+			$name = $user->getName();
 	
 			header('Content-Type: application/javascript');
 			header('Cache-Control: no-cache');
@@ -21,7 +22,7 @@ class ExternalHeaderController extends ViewController {
 <div id=\"prof-head\">
 <a href=\"javascript:showHideProfile()\">
 <img src=\"$src\" />
-<label>Peng Shen &#9662;</label>
+<label>$name &#9662;</label>
 </a>
 </div>
 <div id=\"profile-hide\">
