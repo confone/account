@@ -40,7 +40,6 @@ class ExternalHeaderController extends ViewController {
 </div>
 			";
 		}
-		$content = ($_ASESSION->exist(ASession::$AUTHINDEX)) ? $in : $out;
 
 $script = <<<SCRIPT
 function showHideProfile() {
