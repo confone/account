@@ -42,6 +42,7 @@ class ExternalHeaderController extends ViewController {
 		}
 
 		$content = str_replace(PHP_EOL, '', $content);
+		$content = str_replace('"', '\"', $content);
 
 $script = <<<SCRIPT
 function showHideProfile() {
