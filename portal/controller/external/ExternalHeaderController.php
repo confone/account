@@ -2,7 +2,7 @@
 class ExternalHeaderController extends ViewController {
 
 	protected function control() {
-		global $_ASESSION, $base_host;
+		global $_ASESSION, $base_host, $content_url, $security_url;
 
 		if ($_ASESSION->exist(ASession::$AUTHINDEX)) {
 			$userId = $_ASESSION->getUserId();
@@ -29,7 +29,9 @@ class ExternalHeaderController extends ViewController {
 <div id=\"arrow-up\"></div>
 <div class=\"round4\" id=\"links\">
 <a class=\"round4top\" href=\"$base_host/profile\">Account Settings</a>
-<a class=\"round4bottom\" href=\"$base_host/logout\">Sign Out</a>
+<a href=\"$content_url\">Content Apps</a>
+<a href=\"$security_url\">Security Apps</a>
+<a class=\"round4bottom logout\" href=\"$base_host/logout\">Sign Out</a>
 </div>
 </div>
 			";
