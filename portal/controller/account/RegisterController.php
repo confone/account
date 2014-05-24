@@ -48,6 +48,10 @@ class RegisterController extends ViewController {
 	}
 
 	private function register($email, $name, $password, $cpassword) {
+		if (User::useEmailExist($email)) {
+			return 'Email already exist, please <a href="/login">Sign in</a> now.';
+		}
+
 		if ($password!=$cpassword) {
 			return 'Passwords does NOT match!';
 		}

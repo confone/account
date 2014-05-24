@@ -3,6 +3,11 @@ class User extends Model {
 
 	private $dao = null;
 
+	public static function useEmailExist($email) {
+		$userId = LookupEmailUserDao::getUserIdByEmail($email);
+		return $userId!=0;
+	}
+
 	public static function getUserByEmail($email) {
 		$userId = LookupEmailUserDao::getUserIdByEmail($email);
 		if ($userId!=0) {
