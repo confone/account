@@ -40,5 +40,3 @@ CREATE INDEX {$dbName}_lookup_remember_user_expires_in_index ON {$dbName}.lookup
 
 
 GRANT ALL ON {$dbName}.* TO '{$uname}'@'%' IDENTIFIED BY '{$passwd}';
-
-INSERT INTO {$dbName}.lookup_email_user(email, user_id) VALUES('admin@confone.com', 1);
