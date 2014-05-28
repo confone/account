@@ -3,7 +3,7 @@ class EmailUtil {
 
     const MAIL_FROM_NAME = 'Confone Notification';
     const MAIL_FROM_EMAIL = 'non-reply@confone.com';
-    const MANDRILL_KEY = '2BTjw7gutKe58cWGbbvmeA';
+    const MANDRILL_KEY = 'AmKKVFj6ND9amIM0r_YXYA';
     const MANDRILL_URL = 'https://mandrillapp.com/api/1.0/messages/send.json';
 
     public static function sendActivationEmail($email, $name, $uid, $accountToken) {
